@@ -1,0 +1,16 @@
+{
+  "name": "La Liga Fut 2026",
+  "short_name": "LLF 2026",
+  "description": "Resultados y posiciones en tiempo real",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#1e1b4b",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/5358/5358687.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
