@@ -325,9 +325,15 @@
 </head>
 <body>
   <body>
-      <div id="control-musica" style="display:none; position: fixed; top: 15px; right: 15px; background: #000B1A; border: 2px solid #D4AF37; padding: 10px; border-radius: 12px; z-index: 10000; flex-direction: column; align-items: center; gap: 5px;">
-    <button id="btnPlayPausa" onclick="toggleMusica()" style="background:none; border:none; font-size:20px; cursor:pointer;">⏸️</button>
-    <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="miMusica.volume=this.value" style="width:60px; accent-color:#D4AF37; cursor:pointer;">
+      <div id="control-musica" style="display:none; position: absolute; top: 135px; right: 10px; background: #000B1A; border: 2px solid #D4AF37; padding: 10px; border-radius: 15px; z-index: 99999; text-align: center; min-width: 60px;">
+    
+    <button id="btnPlayPausa" onclick="toggleMusica()" style="background: none; border: none; color: #D4AF37; font-size: 24px; cursor: pointer; padding: 5px; width: 100%; display: block;">
+        ⏸️
+    </button>
+    
+    <input type="range" min="0" max="1" step="0.1" value="0.5" 
+           oninput="miMusica.volume=this.value" 
+           style="width: 50px; cursor: pointer; accent-color: #D4AF37; margin-top: 5px;">
 </div>
 
 <div id="overlay-campeon" style="
