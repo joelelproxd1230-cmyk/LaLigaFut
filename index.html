@@ -3,19 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLF</title>
+    <title>LA LIGA FUT 2026</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --azul-morado: #1e1b4b; 
+            --azul-morado: #0052FF; 
             --degradado: linear-gradient(135deg, #1e1b4b 0%, #020617 100%);
             --fondo: #020617;
             --card: #111827;
             --accent: #6366f1;
             --neon-border: #4338ca;
+            --gold: #ffd700;
         }
 
         body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Esto crea el efecto de luz central de tu foto */
+    background: radial-gradient(circle, #0052FF 0%, #001A4D 100%);
+    background-attachment: fixed; /* Para que el fondo no se mueva al bajar con el scroll */
+    color: white; /* Para que todas las letras de la página sean blancas por defecto */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+          body {
             background-color: var(--fondo);
             color: white;
             font-family: 'Inter', sans-serif;
@@ -23,9 +34,41 @@
             padding-bottom: 110px;
             -webkit-tap-highlight-color: transparent;
             overflow-x: hidden;
+        } /* <--- Este es el corchete que cierra el body */
+
+        /* PEGALO ACÁ ABAJO */
+        .separador-dorado {
+            width: 100%;
+            height: 3px; 
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #000;
         }
 
-        /* --- BOTÓN MENÚ --- */
+        .separador-dorado::before {
+            content: '';
+            position: absolute;
+            width: 300%; 
+            height: 100%;
+            left: -100%;
+            background: linear-gradient(90deg, 
+                #442b01 0%, 
+                #d4af37 25%, 
+                #f9f295 50%, 
+                #d4af37 75%, 
+                #442b01 100%
+            );
+            animation: brilloDorado 3s linear infinite;
+        }
+
+        @keyframes brilloDorado {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(33.3%); }
+        }
+
+        /* --- MENÚ Y NAVEGACIÓN --- */
         .menu-btn {
             position: absolute;
             top: 25px; left: 20px;
@@ -34,7 +77,6 @@
             z-index: 1001;
         }
 
-        /* --- MENÚ LATERAL --- */
         .sidebar {
             position: fixed;
             top: 0; left: -100%;
@@ -55,7 +97,6 @@
             font-size: 18px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .sidebar-link:active { background: var(--azul-morado); }
 
         .overlay {
             position: fixed;
@@ -65,32 +106,97 @@
         }
         .overlay.active { display: block; }
 
+        /* --- TAGS DISEÑO CAPTURA --- */
+        .match-card {
+            background: #1a1f2e;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .match-card-header {
+            font-size: 10px;
+            color: #818cf8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .teams-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .team-name { font-size: 18px; font-weight: 600; width: 40%; }
+        .team-left { text-align: left; }
+        .team-right { text-align: right; }
+
+        .score-pill {
+            background: #ef4444;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .score-vs {
+            background: #6366f1;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .match-info {
+            text-align: center;
+            font-size: 12px;
+            color: #eab308;
+            margin-top: 10px;
+        }
+
+        /* --- GOLEADORES --- */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .goals-left { border-right: 1px solid rgba(255,255,255,0.1); padding-right: 10px; }
+        .goals-right { text-align: right; padding-left: 10px; }
+
         /* --- MODAL CAMPEONES --- */
         .modal {
             position: fixed;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%) scale(0.9);
-            width: 90%; max-width: 400px;
+            width: 90%; -width: 400px;
             max-height: 80vh; overflow-y: auto;
             background: var(--degradado);
             border: 2px solid gold;
             border-radius: 20px;
-            padding: 20px;
-            z-index: 1200;
-            display: none;
-            opacity: 0;
+            padding: 20px; z-index: 1200; display: none; opacity: 0;
             transition: 0.3s ease;
         }
         .modal.active { display: block; opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        .modal-header { text-align: center; color: gold; font-size: 24px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid gold; padding-bottom: 10px; }
 
-        /* --- ESTILOS ORIGINALES --- */
         #splash {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--degradado);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 1000; transition: opacity 0.8s ease, visibility 0.8s;
+            z-index: 2000; transition: opacity 0.8s ease, visibility 0.8s;
         }
 
         header {
@@ -104,56 +210,247 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .date-label { color: var(--accent); font-weight: bold; margin: 25px 0 10px 5px; font-size: 1.2em; border-bottom: 1px solid #1e293b; padding-bottom: 5px; }
+        .date-label { color: var(--accent); font-weight: bold; margin: 25px 0 10px 5px; font-size: 1.1em; border-bottom: 1px solid #1e293b; padding-bottom: 5px; text-transform: uppercase; }
 
-        .match-card {
-            background: var(--card);
-            border-radius: 18px;
-            padding: 16px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 2px solid var(--neon-border);
-            transition: transform 0.1s ease;
-        }
-        .match-card:active { transform: scale(0.95) translateY(4px); }
+        /* Contenedor de la tabla */
+.tabla-contenedor {
+    background: rgba(10, 15, 26, 0.8);
+    border-radius: 15px;
+    padding: 10px;
+    border: 1px solid #D4AF37; /* Borde dorado */
+}
 
-        details.match-card { display: block; padding: 0; }
-        summary { padding: 16px; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
-        .arrow { transition: transform 0.3s ease; color: var(--accent); }
-        details[open] .arrow { transform: rotate(180deg); }
-        .detail-content { background: rgba(0,0,0,0.3); max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 15px; }
-        details[open] .detail-content { max-height: 400px; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+.tabla-pos {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    font-family: sans-serif;
+}
 
-        .time-tag { color: #94a3b8; font-size: 0.85em; background: #1e293b; padding: 4px 10px; border-radius: 8px; }
+.tabla-pos th {
+    color: #A1A1AA;
+    font-size: 12px;
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
-        .tabla-contenedor { overflow-x: auto; border-radius: 18px; border: 2px solid var(--neon-border); }
-        .tabla-pos { width: 100%; border-collapse: collapse; background: var(--card); min-width: 500px; }
-        .tabla-pos th { background: #1e1b4b; color: #818cf8; padding: 12px; font-size: 0.75em; }
-        .tabla-pos td { padding: 15px 10px; text-align: center; border-bottom: 1px solid #1e293b; font-size: 0.85em; }
+.tabla-pos td {
+    padding: 12px 5px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Colores de la Forma */
+.dot {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin: 0 2px;
+    font-size: 10px;
+    line-height: 18px;
+    font-weight: bold;
+}
+.v { background: #22c55e; } /* Verde - Victoria */
+.e { background: #FACC15; } /* Amarillo - Empate */
+.d { background: #EF4444; } /* Rojo - Derrota */
+
+.puntos-resaltados { color: #D4AF37; font-weight: bold; }
 
         nav {
             position: fixed; bottom: 0; width: 100%;
             background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(15px);
             display: flex; justify-content: space-around;
-            padding: 20px 0; border-top: 2px solid var(--neon-border); z-index: 500;
+            padding: 15px 0; border-top: 1px solid var(--neon-border); z-index: 1000;
         }
 
         .nav-item {
             background: none; border: none; color: #64748b;
-            display: flex; flex-direction: column; align-items: center;
-            font-size: 14px; gap: 8px; cursor: pointer; transition: transform 0.2s;
+            display: flex; flex-direction: column; align-items: center; font-size: 12px; gap: 5px;
         }
-        .nav-item:active { transform: scale(0.8); }
-        .nav-item img { width: 30px; height: 30px; object-fit: contain; filter: brightness(0.7); }
-        .nav-item.active { color: #818cf8; font-weight: bold; }
+        .nav-item img { width: 26px; height: 26px; filter: brightness(0.6); }
+        .nav-item.active { color: #818cf8; }
         .nav-item.active img { filter: invert(1); }
+  /* --- ESTO VA ADENTRO DEL STYLE --- */
+
+/* Fondo oscuro que bloquea la pantalla */
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    z-index: 9999;
+}
+.overlay.active { display: block; }
+
+
+
+.menu-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3b82f6;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    color: white;
+    text-decoration: none;
+    /* Elimina o comenta la línea de abajo */
+    border-bottom: none !important; 
+}
+
+.sidebar-link {
+    display: block;
+    padding: 15px 10px;
+    color: white;
+    text-decoration: none;
+    /* También asegúrate de que aquí no haya borde */
+    border-bottom: none !important;
+}
     </style>
 </head>
 <body>
+  <body>
+<div id="overlay-campeon" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fondo semi-transparente para que se vea tu azul de fondo */
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(10px); /* Esto hace un efecto de desenfoque muy moderno */
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;">
+    
+    <h1 style="color: #FFD700; font-size: 3.5rem; text-shadow: 0 0 15px rgba(255,215,0,0.6);">
+        ¡LANZA ALL ES EL CAMPEÓN DEL MUNDIAL LLF!
+    </h1>
+    
+    <button onclick="cerrarBienvenida()" style="
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: #FFD700;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 50px;">
+        CONTINUAR A LA TEMPORADA 8
+    </button>
+</div>
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+<style>
+    /* Animación del texto */
+    @keyframes aparecer {
+        from { transform: scale(1); opacity: 0.8; }
+        to { transform: scale(1.1); opacity: 1; }
+    }
+
+    /* Fondo con destellos que simulan fuegos */
+    .fuegos {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(circle, #FFD700 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.3;
+        z-index: -1;
+        animation: moverFuegos 5s linear infinite;
+    }
+
+    @keyframes moverFuegos {
+        from { background-position: 0 0; }
+        to { background-position: 100px 100px; }
+    }
+  .tag-partido {
+    /* Mismo fondo que el header: azul profundo con líneas doradas */
+    background: 
+        linear-gradient(115deg, transparent 20%, rgba(212, 175, 55, 0.05) 21%, transparent 22%),
+        linear-gradient(115deg, transparent 50%, rgba(212, 175, 55, 0.05) 51%, transparent 52%),
+        radial-gradient(circle at center, #002B5B 0%, #000B1A 100%);
+    
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+/* Mantenemos el efecto de la luz que gira en el borde, pero ahora en dorado */
+.tag-partido::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, #D4AF37, transparent 30%);
+    animation: girarBorde 4s linear infinite;
+    z-index: -2;
+}
+
+/* El fondo interno ahora también debe ser el degradado para que no se vea negro */
+.tag-partido::after {
+    content: '';
+    position: absolute;
+    inset: 3px; 
+    background: inherit; /* Copia el fondo del padre (el degradado) */
+    border-radius: 12px;
+    z-index: -1;
+}
+
+
+/* La luz azul que gira */
+.tag-partido::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* El color #0052FF es el de tu fondo */
+    background: conic-gradient(transparent, #0052FF, transparent 30%);
+    animation: girarBorde 4s linear infinite;
+    z-index: -2;
+}
+
+/* El fondo interno para que la luz solo se vea en el borde */
+.tag-partido::after {
+    content: '';
+    position: absolute;
+    inset: 3px; /* Este es el grosor de tu línea azul */
+    background: #0a0f1a; 
+    border-radius: 12px;
+    z-index: -1;
+}
+
+/* La animación que hace que la luz corra */
+@keyframes girarBorde {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+    function cerrarBienvenida() {
+        document.getElementById('overlay-campeon').style.display = 'none';
+    }
+</script>
 
     <div class="sidebar" id="sidebar">
         <a href="#" class="sidebar-link" onclick="openModal()">🏆 Ver Campeones</a>
@@ -197,182 +494,615 @@
         </details>
         <button onclick="closeModal()" style="width:100%; background:gold; border:none; padding:12px; border-radius:12px; font-weight:bold; margin-top:15px; cursor:pointer;">CERRAR</button>
     </div>
-
     <div id="splash">
-        <h1 style="margin:0; font-size: 32px;">¡HOLA!</h1>
-        <p style="color:#818cf8; font-size: 20px;">¡BIENVENIDO A LA PAGINA LLF!</p>
+        <h1>¡HOLA!</h1>
+        <p>¡BIENVENIDO A LA PÁGINA LLF!</p>
     </div>
 
-    <header>
-        <h1 style="margin:0; font-size: 28px;">🏆 TEMPORADA 7 🏆</h1>
-        <p style="margin:5px 0 0; color:#818cf8; font-size: 16px;">LLF 2026</p>
-    </header>
+    <header style="
+    background: 
+        /* Esto crea las líneas doradas finas */
+        linear-gradient(115deg, transparent 20%, rgba(212, 175, 55, 0.1) 21%, transparent 22%),
+        linear-gradient(115deg, transparent 50%, rgba(212, 175, 55, 0.1) 51%, transparent 52%),
+        /* Este es el fondo azul profundo */
+        radial-gradient(circle at top, #002B5B 0%, #000B1A 100%);
+    padding: 50px 20px;
+    text-align: center;
+    border-bottom: 2px solid #D4AF37; /* Línea dorada divisoria abajo */
+">
+    <h1 style="margin:0; color: #D4AF37; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+        TEMPORADA 8
+    </h1>
+    <p style="color: #F5F5F7; margin-top: 10px; letter-spacing: 2px; font-weight: bold; opacity: 0.9;">
+        LLF ENERO - FEBRERO 2026
+    </h1>
+</header>
 
     <div id="inicio" class="tab-content active">
-        <div class="date-label">⚽ PROXIMOS PARTIDOS POR LIGA (HOY)</div>
-        <div class="match-card"><span>FECHA 16: Argentina vs Lanza All</span> <span class="time-tag">15:05 PM</span></div>
-        <div class="match-card"><span>FECHA 17: Lanza All vs Argentina</span> <span class="time-tag">17:30 PM</span></div>
-    </div>
-    <div id="inicio" class="tab-content active">
-        <div class="date-label">⚽ PROXIMOS PARTIDOS POR COPA (HOY)</div>
-        <div class="match-card"><span>SUPER COPA(VUELTA): Argentina vs Lanza All</span> <span class="time-tag">12:30 PM</span></div>
-        <div class="match-card"><span>COPA ORO(IDA): Lanza All vs Argentina</span> <span class="time-tag">14:45 PM</span></div>
-    </div>
-
-    <div id="partidos" class="tab-content">
-        <div class="date-label">🗓️ 21/01</div>
-        <div class="match-card"><span>⚽ FECHA 1</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 2</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 3</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>🏆 COPA LLF(I)</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 4</span> <span class="time-tag">Final</span></div>
-
-        <div class="date-label">🗓️ 22/01</div>
-        <div class="match-card"><span>⚽ FECHA 5</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 6</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>🏆 COPA BRONCE</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 7</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 8</span> <span class="time-tag">Final</span></div>
-
-        <div class="date-label">🗓️ 23/01</div>
-        <div class="match-card"><span>🏆 COPA PLATA</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 9</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 10</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 11</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 12</span> <span class="time-tag">Final</span></div>
-
-        <div class="date-label">🗓️ 25/01</div>
-        <div class="match-card"><span>⚽ FECHA 13</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 14</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>🏆 COPA LLF(V)</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>🏆 COPA FUT(I)</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>⚽ FECHA 15</span> <span class="time-tag">Final</span></div>
-
-        <div class="date-label">🗓️ 26/01</div>
-        <div class="match-card"><span>🏆 SUPER COPA</span> <span class="time-tag">12:30 PM</span></div>
-        <div class="match-card"><span>🏆 COPA ORO(I)</span> <span class="time-tag">14:45 PM</span></div>
-        <div class="match-card"><span>⚽ FECHA 16</span> <span class="time-tag">15:05 PM</span></div>
-        <div class="match-card"><span>⚽ FECHA 17</span> <span class="time-tag">15:30 PM</span></div>
+        <div class="date-label" style="color: #ef4444;">● PARTIDO IMPORTANTE </div>
         
-        <div class="date-label">🗓️ 26/01</div>
-        <div class="match-card"><span>⚽ FECHA 18</span> <span class="time-tag">15:55 PM</span></div>
-        <div class="match-card"><span>⚽ FECHA 19</span> <span class="time-tag">16:15 PM</span></div>
-        <div class="match-card"><span>⚽ FECHA 20</span> <span class="time-tag">16:30 PM</span></div>
-        <div class="match-card"><span>🏆 COPA ORO(V)</span> <span class="time-tag">16:50 PM</span></div>
-        <div class="match-card"><span>🏆 COPA FUT(V)</span> <span class="time-tag">17:05 PM</span></div>
+        <div class="match-card" style="border: 1px solid #ef4444;">
+            <div class="match-card-header">
+                <span>COPA BRONCE IDA</span> • <span style="color:#FFFFFF">HOY</span>
+            </div>
+            <div class="teams-container">
+                <div class="team-name team-left">LANZA ALL</div>
+                <div class="score-vs">VS</div>
+                <div class="team-name team-right">ARGENTINA</div>
+            </div>
+            <div class="match-info">
+                📍 LANZA ALL STADIUM | --:-- hs
+            </div>
+        </div>
 
-        <div class="date-label">🗓️ 26/01</div>
-        <div class="match-card"><span>⚽ FECHA 21</span> <span class="time-tag">18:15 PM</span></div>
-        <div class="match-card"><span>⚽ FECHA 22</span> <span class="time-tag">18:25 PM</span></div>
-        <div class="match-card"><span>⚽ FECHA 23</span> <span class="time-tag">18:40 PM</span></div>
-        <div class="match-card"><span>⚽ FECHA 24</span> <span class="time-tag">19:20 PM</span></div>
-        <div class="match-card"><span style="color:gold">🏆 MUNDIAL 1 🏆</span> <span class="time-tag">20:26 PM</span></div>
-    </div>
+        <div class="date-label" style="color: #FFFFFF">PRÓXIMOS PARTIDOS (HOY)</div>
+        
+        <div class="match-card">
+            <div class="match-card-header">HOY • FECHA 1</div>
+            <div class="teams-container">
+                <div class="team-name team-left">ARGENTINA</div>
+                <div class="score-vs">VS</div>
+                <div class="team-name team-right">LANZA ALL</div>
+            </div>
+            <div class="match-info" style="color: gold;">📍 La Parga De Dios | --:-- hs</div>
+        </div>
 
-    <div id="resultados" class="tab-content">
-        <div class="date-label">🏁 Historial de Resultados</div>
-        <div class="match-card"><span>FECHA 15: Lanza All 2-1 Argentina</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>COPA FUT (IDA): Lanza All 2-2 Argentina</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>COPA LLF (VUELTA): Lanza All 2-1 Argentina</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 14: Argentina 2-2 Lanza All</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 13: Lanza All 1-0 Argentina</span> <span class="time-tag">Final</span></div>
-        <details class="match-card">
-    <summary>
-        <span>⚽ FECHA 12: Lanza All 2-0 Argentina</span>
-        <span class="arrow">▼</span>
-    </summary>
-    <div class="detail-content">
-        <p>⚽ 13' Gol de K.mbappé (LAN)</p>
-        <p>⚽ 90' Gol de Ribeiro</p>
-    </div>
-</details>
-        <details class="match-card">
-    <summary>
-        <span>⚽ FECHA 11: Argentina 3-2 Lanza All</span>
-        <span class="arrow">▼</span>
-    </summary>
-    <div class="detail-content">
-        <p>⚽ 44' Gol de Vini.jr (ARG)</p>
-        <p>⚽ 62' Gol de Modrić (ARG)</p>
-        <p>⚽ 71' Gol de T.kroos (ARG)</p>
-        <p>⚽ 75' Gol OG (A.Rüdiger, ARG)</p>
-        <p>⚽ 80' Gol de J.Alvarez (LAN)</p>
-    </div>
-</details>
-
-        <details class="match-card">
-    <summary>
-        <span>⚽ FECHA 10: Argentina 4–2 Lanza All</span>
-        <span class="arrow">▼</span>
-    </summary>
-    <div class="detail-content">
-        <p>⚽ 10' Gol de Vini Jr (ARG)</p>
-        <p>⚽ 44' Gol de K. Mbappé (LAN)</p>
-        <p>⚽ 64' Gol de Kroos (ARG)</p>
-        <p>⚽ 67' Gol de J. Alvarez (LAN)</p>
-        <p>⚽ 81' Gol de E. Haaland (ARG)</p>
-        <p>⚽ 88' Gol de Gabriel (ARG)</p>
-    </div>
-</details>
-
-            
-            <details class="match-card">
-            <summary>
-                <span>⚽ FECHA 9: Argentina 1-3 Lanza All</span><span class="arrow">▼</span>
-            </summary>
-            <div class="detail-content">
-                <p>⚽ 5' Gol de Mbappé (ARG)</p>
-                <p>⚽ 8' Gol de Saka (LAN)</p>
-                <p>⚽ 21' Gol de K.Mbappé (LAN)</p>
-                <p>⚽ 85' Gol de M.Salah (LAN)</p>
-           </div>
-        </details>
-        <details class="match-card">
-            <summary>
-                <span>🏆 COPA PLATA: Argentina 1-4 Lanza All</span><span class="arrow">▼</span></summary>
-            <div class="detail-content">
-                <p>⚽ 6' Gol de K.Mbappé (LAN)</p>
-                <p>⚽ 15' Gol de K.Mbappé (LAN)</p>
-                <p>⚽ 41' Gol de Saka (LAN)</p>
-                <p>⚽ 44' Gol de Mbappé (ARG)</p>
-                <p>⚽ 90' Gol de J.Alvarez (LAN)</p>
-           </div>
-        </details>
-        <div class="match-card"><span>FECHA 8: Argentina 1-4 Lanza All</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 7: 2-2 (Empate)</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>COPA BRONCE: Argentina 2-1 Lanza All</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 6: 1-1 (Empate)</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 5: Argentina 2-1 Lanza All</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 4: Argentina 2-1 Lanza All</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>COPA LLF(I): Lanza All 2-1 Argentina</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 3: 0-0 (Empate)</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 2: 0-0 (Empate)</span> <span class="time-tag">Final</span></div>
-        <div class="match-card"><span>FECHA 1: Lanza All 3-1 Argentina</span> <span class="time-tag">Final</span></div>
-    </div>
-
-    <div id="tabla" class="tab-content">
-        <div class="date-label">📊 Tabla de Posiciones</div>
-        <div class="tabla-contenedor">
-            <table class="tabla-pos">
-                <thead>
-                    <tr><th>POS</th><th style="text-align:left">EQUIPO</th><th>PTS</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>GD</th></tr>
-                </thead>
-                <tbody>
-                    <tr style="background: rgba(34, 197, 94, 0.1);"><td>1°</td><td style="text-align:left">Lanza All</td><td>25</td><td>19</td><td>6</td><td>7</td><td>6</td><td>32</td><td>31</td><td>+1</td></tr>
-                    <tr style="background: rgba(100, 116, 139, 0.1);"><td>2°</td><td style="text-align:left">Argentina</td><td>15</td><td>19</td><td>6</td><td>7</td><td>6</td><td>31</td><td>32</td><td>-1</td></tr>
-                </tbody>
-            </table>
+        <div class="match-card">
+            <div class="match-card-header">HOY • FECHA 2</div>
+            <div class="teams-container">
+                <div class="team-name team-left">ARGENTINA</div>
+                <div class="score-vs">VS</div>
+                <div class="team-name team-right">LANZA ALL</div>
+            </div>
+            <div class="match-info" style="color: gold;">📍 La Parga De Dios | --:-- hs</div>
         </div>
     </div>
 
-    <nav>
-        <button class="nav-item active" onclick="tab('inicio', this)"><span><img src="home.jpg"></span>Inicio</button>
-        <button class="nav-item" onclick="tab('partidos', this)"><span><img src="Partidos.jpg"></span>Partidos</button>
-        <button class="nav-item" onclick="tab('resultados', this)"><span><img src="resultados.jpg"></span>Res.</button>
-        <button class="nav-item" onclick="tab('tabla', this)"><span><img src="Tabla.jpg"></span>Tabla</button>
-    </nav>
+    <div id="partidos" class="tab-content">
+    <div class="date-label">🗓️ 27 DE ENERO</div>
+    
+ <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 1 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
 
-    <script>
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 2 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 3 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid #cd7f32;">
+        <div class="match-card-header" style="color: #cd7f32;">🏆 COPA BRONCE • IDA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: #94a3b8; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 4 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="date-label">🗓️ 28 DE ENERO</div>
+    
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 5 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 6 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid #c0c0c0;">
+        <div class="match-card-header" style="color: #c0c0c0;">🏆 COPA PLATA • IDA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: #94a3b8; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 7 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 8 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="date-label">🗓️ 29 DE ENERO</div>
+
+    <div class="match-card" style="border: 1px solid #00f2ff;">
+        <div class="match-card-header" style="color:#00f2ff">🏆 COPA FUT • IDA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: #94a3b8; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+        <div class="match-card" style="border: 1px solid #FFFFFF;">
+        <div class="match-card-header" style="color: white;">🏆 SUPER COPA •</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: #94a3b8; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+   <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 9 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+        <div class="match-card" style="border: 1px solid cyan;">
+        <div class="match-card-header" style="color: cyan;">🏆 COPA LLF • IDA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+        <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 10 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+        
+    <div class="date-label">🗓️ 30 DE ENERO</div>
+        
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 11 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 12 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid #cd7f32;">
+        <div class="match-card-header" style="color: #cd7f32;">🏆 COPA BRONCE • VUELTA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: #94a3b8; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid plat;">
+        <div class="match-card-header" style="color: plat;">🏆 COPA PLATA • VUELTA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: plat; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 13 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="date-label">🗓️ 31 DE ENERO </div>
+    
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 14 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid cyan;">
+        <div class="match-card-header" style="color: cyan;">🏆 COPA LLF • VUELTA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 15 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid cyan;">
+        <div class="match-card-header" style="color: cyan;">🏆 COPA FUT • VUELTA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 16 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+        
+        <div class="date-label">🗓️ 01 DE FEBRERO </div>
+        
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 17 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 18 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid pink;">
+        <div class="match-card-header" style="color: pink;">🏆 COPA DE CAMPEONES</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: white; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 19 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid blue;">
+        <div class="match-card-header" style="color: blue;">🏆 COPA DIAMANTE • IDA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">ARGENTINA</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">LANZA ALL</div>
+        </div>
+        <div class="match-info" style="color: blue; font-size: 10px; margin-top: 8px;">
+        🏟️ TODO DE DIOS •
+    </div>
+    </div>
+
+        <div class="date-label">🗓️ 02 DE FEBRERO </div>
+        
+    <div class="match-card" style="border: 1px solid gold;">
+        <div class="match-card-header" style="color: gold;">⚽ FECHA 20 • LIGA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">Lanza All</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">Argentina</div>
+        </div>
+        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+
+    <div class="match-card" style="border: 1px solid blue;">
+        <div class="match-card-header" style="color: blue;">🏆 COPA DIAMANTE • VUELTA</div>
+        <div class="teams-container">
+            <div class="team-name team-left">LANZA ALL</div>
+            <div class="score-vs">--:--</div>
+            <div class="team-name team-right">ARGENTINA</div>
+        </div>
+        <div class="match-info" style="color: blue; font-size: 10px; margin-top: 8px;">
+        🏟️ LANZA ALL STADIUM •
+    </div>
+    </div>
+        <div class="date-label">🏆 MUNDIAL 🏆</div>
+
+    <div class="match-card" style="background: linear-gradient(135deg, #1e1b4b, #020617); border: 2px solid var(--gold); padding: 30px;">
+        <div class="match-card-header" style="color:var(--gold); font-weight:bold; font-size: 14px;">EVENTO FINAL</div>
+        <div class="teams-container" style="justify-content:center; flex-direction:column; gap:10px;">
+            <div style="font-size: 28px; font-weight: 800; color: white; text-shadow: 0 0 10px var(--gold);">🏆 MUNDIAL 2 🏆</div>
+            <div class="score-pill" style="background: var(--gold); color: black; font-size: 18px; padding: 5px 25px;">--:--</div>
+        </div>
+        <div class="match-info" style="color:white; font-weight:bold; margin-top:15px;">02 DE FEBRERO</div>
+    </div>
+</div>
+  
+    <div id="tabla" class="tab-content">
+    <div class="date-label" style="color:#D4AF37; text-align:center; margin-bottom:15px;">📊 CLASIFICACIÓN DE LIGA</div>
+    
+    <div class="tabla-contenedor">
+        <table class="tabla-pos">
+            <thead>
+                <tr>
+                    <th>POS</th>
+                    <th style="text-align:left">EQUIPO</th>
+                    <th>PTS</th>
+                    <th>PJ</th>
+                    <th>G</th>
+                    <th>E</th>
+                    <th>P</th>
+                    <th>GD</th>
+                    <th>FORMA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="color:#22c55e; font-weight:bold;">1°</td>
+                    <td style="text-align:left; font-weight:bold;">Argentina</td>
+                    <td class="puntos-resaltados">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td style="color:#22c55e;">0</td>
+                    <td>
+                        <div class="forma-container">
+                            <span class="dot v">V</span><span class="dot v">V</span><span class="dot v">V</span><span class="dot v">V</span><span class="dot v">V</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;">2°</td>
+                    <td style="text-align:left; font-weight:bold;">Lanza All</td>
+                    <td class="puntos-resaltados">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td style="color:#EF4444;">0</td>
+                    <td>
+                        <div class="forma-container">
+                            <span class="dot v">V</span><span class="dot v">v</span><span class="dot v">V</span><span class="dot v">V</span><span class="dot v">V</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <nav class="nav-container">
+    <style>
+        /* --- ESTO ARREGLA QUE SE VEA LA TABLA EN EL INICIO --- */
+        .tab-content {
+    display: none !important; /* Esto obliga a que todo se esconda */
+    padding: 15px;
+}
+
+.tab-content.active {
+    display: block !important; /* Solo la que tiene 'active' se muestra */
+}
+
+        /* --- TU ISLA NAVEGACIÓN --- */
+        .nav-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            max-width: 280px;
+            height: 55px;
+            background: #020617;
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, #1e3a8a, #000, #3b82f6, #000, #1e3a8a);
+            animation: girarBorde 4s linear infinite;
+            z-index: -2;
+        }
+
+        .nav-container::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: #0f172a;
+            border-radius: 100px;
+            z-index: -1;
+        }
+
+        @keyframes girarBorde {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-item {
+            background: none; border: none; color: #94a3b8;
+            display: flex; flex-direction: column; align-items: center;
+            font-size: 9px; font-weight: 600; gap: 2px; flex: 1;
+            transition: 0.3s; z-index: 10; cursor: pointer;
+        }
+
+        .nav-item img { width: 18px; height: 18px; filter: brightness(0.4); transition: 0.3s; }
+
+        .nav-item.active { color: #3b82f6; }
+        .nav-item.active img { filter: brightness(1) drop-shadow(0 0 5px #3b82f6); transform: translateY(-2px); }
+    </style>
+
+    <div class="nav-item active" onclick="tab('inicio', this)">
+        <img src="home.jpg">
+        <span>Inicio</span>
+    </div>
+    <div class="nav-item" onclick="tab('partidos', this)">
+        <img src="Partidos.jpg">
+        <span>Partidos</span>
+    </div>
+    <div class="nav-item" onclick="tab('tabla', this)">
+        <img src="Tabla.jpg">
+        <span>Tabla</span>
+    </div>
+</nav>
+
+   <script>
         setTimeout(() => { 
             const s = document.getElementById('splash');
             s.style.opacity = '0'; setTimeout(() => s.style.visibility = 'hidden', 800); 
