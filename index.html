@@ -317,6 +317,11 @@
 </head>
 <body>
   <body>
+      <div id="control-musica" style="display:none; position: fixed; top: 15px; right: 15px; background: #000B1A; border: 2px solid #D4AF37; padding: 10px; border-radius: 12px; z-index: 10000; flex-direction: column; align-items: center; gap: 5px;">
+    <button id="btnPlayPausa" onclick="toggleMusica()" style="background:none; border:none; font-size:20px; cursor:pointer;">⏸️</button>
+    <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="miMusica.volume=this.value" style="width:60px; accent-color:#D4AF37; cursor:pointer;">
+</div>
+
 <div id="overlay-campeon" style="
     position: fixed;
     top: 0;
@@ -1103,6 +1108,41 @@
 </nav>
 
    <script>
+      // 1. Definir la música (global)
+var miMusica = new Audio('musica.mp3');
+miMusica.loop = true;
+
+// 2. La función que dispara todo
+function cerrarBienvenida() {
+    // Cerrar el cartel
+    const overlay = document.getElementById('overlay-campeon');
+    if (overlay) overlay.style.display = 'none';
+
+    // Mostrar el cuadradito de música
+    const control = document.getElementById('control-musica');
+    if (control) control.style.display = 'flex';
+
+    // Mostrar la isla de navegación
+    const isla = document.getElementById('isla-navegacion');
+    if (isla) isla.style.display = 'flex';
+
+    // Intentar sonar
+    miMusica.play().catch(function(error) {
+        console.log("El audio espera un clic para sonar");
+    });
+}
+
+// 3. Función para el botón de pausa
+function toggleMusica() {
+    const btn = document.getElementById('btnPlayPausa');
+    if (miMusica.paused) {
+        miMusica.play();
+        btn.innerText = "⏸️";
+    } else {
+        miMusica.pause();
+        btn.innerText = "▶️";
+    }
+}
         setTimeout(() => { 
             const s = document.getElementById('splash');
             s.style.opacity = '0'; setTimeout(() => s.style.visibility = 'hidden', 800); 
@@ -1141,6 +1181,7 @@
         function lanzarConfetti() {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#6366f1', '#ffd700', '#ffffff'] });
         }
+      
     </script>
 </body>
 </html>
