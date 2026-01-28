@@ -325,15 +325,12 @@
 </head>
 <body>
   <body>
-      <div id="control-musica" style="display:none; position: absolute; top: 135px; right: 10px; background: #000B1A; border: 2px solid #D4AF37; padding: 10px; border-radius: 15px; z-index: 99999; text-align: center; min-width: 60px;">
-    
-    <button id="btnPlayPausa" onclick="toggleMusica()" style="background: none; border: none; color: #D4AF37; font-size: 24px; cursor: pointer; padding: 5px; width: 100%; display: block;">
-        ⏸️
-    </button>
-    
-    <input type="range" min="0" max="1" step="0.1" value="0.5" 
-           oninput="miMusica.volume=this.value" 
-           style="width: 50px; cursor: pointer; accent-color: #D4AF37; margin-top: 5px;">
+      <div id="control-musica" style="display:none; position: absolute; top: 3px; right: 10px; background: #000B1A; border: 2px solid #D4AF37; padding: 10px; border-radius: 15px; z-index: 100000; text-align: center; min-width: 80px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 5px;">
+        <button id="btnPlayPausa" onclick="toggleMusica()" style="background: none; border: none; color: #D4AF37; font-size: 22px; cursor: pointer;">⏸️</button>
+        <button onclick="siguienteCancion()" style="background: none; border: none; color: #D4AF37; font-size: 22px; cursor: pointer;">⏩</button>
+    </div>
+    <input type="range" min="0" max="1" step="0.1" value="0.5" oninput="miMusica.volume=this.value" style="width: 60px; accent-color: #D4AF37; margin-top: 5px; cursor: pointer;">
 </div>
 
 <div id="overlay-campeon" style="
@@ -353,7 +350,7 @@
     text-align: center;">
     
     <h1 style="color: #FFD700; font-size: 3.5rem; text-shadow: 0 0 15px rgba(255,215,0,0.6);">
-        ¡LANZA ALL ES EL CAMPEÓN DEL MUNDIAL LLF!
+        ¡BIENVENIDO A LA PÁGINA OFICIAL DE LLF!
     </h1>
     
     <button onclick="cerrarBienvenida()" style="
@@ -542,43 +539,43 @@
         
         <div class="match-card" style="border: 1px solid #ef4444;">
             <div class="match-card-header">
-                <span>COPA PLATA IDA</span> • <span style="color:#FFFFFF">MAÑANA</span>
+                <span>COPA PLATA IDA</span> • <span style="color:#FFFFFF">HOY</span>
             </div>
-            <div class="teams-container">
-                <div class="team-name team-left">LANZA ALL</div>
-                <div class="score-vs">VS</div>
-                <div class="team-name team-right">ARGENTINA</div>
-            </div>
-            <div class="match-info">
-                📍 Todo De Dios | --:-- hs
-            </div>
-        </div>
-
-        <div class="date-label" style="color: #FFFFFF">PRÓXIMOS PARTIDOS (MAÑANA)</div>
-        
-        <div class="match-card">
-            <div class="match-card-header">MAÑANA • FECHA 5</div>
             <div class="teams-container">
                 <div class="team-name team-left">ARGENTINA</div>
                 <div class="score-vs">VS</div>
                 <div class="team-name team-right">LANZA ALL</div>
             </div>
-            <div class="match-info" style="color: gold;">📍 Todo De Dios | --:-- hs</div>
+            <div class="match-info">
+                📍 Todo De Dios | 16:40 hs
+            </div>
+        </div>
+
+        <div class="date-label" style="color: #FFFFFF">PRÓXIMOS PARTIDOS (HOY)</div>
+        
+        <div class="match-card">
+            <div class="match-card-header" style="color: #FFFFFF">HOY • FECHA 5</div>
+            <div class="teams-container">
+                <div class="team-name team-left">ARGENTINA</div>
+                <div class="score-vs">VS</div>
+                <div class="team-name team-right">LANZA ALL</div>
+            </div>
+            <div class="match-info" style="color: gold;">📍 Todo De Dios | 15:30 hs</div>
         </div>
 
         <div class="match-card">
-            <div class="match-card-header">MAÑANA • FECHA 6</div>
+            <div class="match-card-header" style="color: #FFFFFF">HOY • FECHA 6</div>
             <div class="teams-container">
                 <div class="team-name team-left">LANZA ALL</div>
                 <div class="score-vs">VS</div>
                 <div class="team-name team-right">ARGENTINA</div>
             </div>
-            <div class="match-info" style="color: gold;">📍 LANZA ALL STADIUM | --:-- hs</div>
+            <div class="match-info" style="color: gold;">📍 LANZA ALL STADIUM | 16:10 hs</div>
         </div>
     </div>
 
     <div id="partidos" class="tab-content">
-    <div class="date-label">🗓️ 27 DE ENERO</div>
+    <div class="date-label" style="color: #FFFFFF">🗓️ 27 DE ENERO</div>
     
  <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
     
@@ -770,13 +767,13 @@
     </div>
 </div>
 
-    <div class="date-label">🗓️ 28 DE ENERO</div>
+    <div class="date-label" style="color: #FFFFFF">🗓️ 28 DE ENERO</div>
     
     <div class="match-card" style="border: 1px solid gold;">
         <div class="match-card-header" style="color: gold;">⚽ FECHA 5 • LIGA</div>
         <div class="teams-container">
             <div class="team-name team-left">ARGENTINA</div>
-            <div class="score-vs">--:--</div>
+            <div class="score-vs">15:30</div>
             <div class="team-name team-right">LANZA ALL</div>
         </div>
         <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
@@ -788,7 +785,7 @@
         <div class="match-card-header" style="color: gold;">⚽ FECHA 6 • LIGA</div>
         <div class="teams-container">
             <div class="team-name team-left">LANZA ALL</div>
-            <div class="score-vs">--:--</div>
+            <div class="score-vs">16:10</div>
             <div class="team-name team-right">ARGENTINA</div>
         </div>
         <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
@@ -800,7 +797,7 @@
         <div class="match-card-header" style="color: #c0c0c0;">🏆 COPA PLATA • IDA</div>
         <div class="teams-container">
             <div class="team-name team-left">ARGENTINA</div>
-            <div class="score-vs">--:--</div>
+            <div class="score-vs">16:40</div>
             <div class="team-name team-right">LANZA ALL</div>
         </div>
         <div class="match-info" style="color: #94a3b8; font-size: 10px; margin-top: 8px;">
@@ -812,7 +809,7 @@
         <div class="match-card-header" style="color: gold;">⚽ FECHA 7 • LIGA</div>
         <div class="teams-container">
             <div class="team-name team-left">LANZA ALL</div>
-            <div class="score-vs">--:--</div>
+            <div class="score-vs">17:20</div>
             <div class="team-name team-right">ARGENTINA</div>
         </div>
         <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
@@ -824,7 +821,7 @@
         <div class="match-card-header" style="color: gold;">⚽ FECHA 8 • LIGA</div>
         <div class="teams-container">
             <div class="team-name team-left">ARGENTINA</div>
-            <div class="score-vs">--:--</div>
+            <div class="score-vs">18:00</div>
             <div class="team-name team-right">LANZA ALL</div>
         </div>
         <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
@@ -832,7 +829,7 @@
     </div>
     </div>
 
-    <div class="date-label">🗓️ 29 DE ENERO</div>
+    <div class="date-label" style="color: #FFFFFF">🗓️ 29 DE ENERO</div>
 
     <div class="match-card" style="border: 1px solid #00f2ff;">
         <div class="match-card-header" style="color:#00f2ff">🏆 COPA FUT • IDA</div>
@@ -891,7 +888,7 @@
     </div>
     </div>
         
-    <div class="date-label">🗓️ 30 DE ENERO</div>
+    <div class="date-label" style="color: #FFFFFF">🗓️ 30 DE ENERO</div>
         
     <div class="match-card" style="border: 1px solid gold;">
         <div class="match-card-header" style="color: gold;">⚽ FECHA 11 • LIGA</div>
@@ -953,7 +950,7 @@
     </div>
     </div>
 
-    <div class="date-label">🗓️ 31 DE ENERO </div>
+    <div class="date-label" style="color: #FFFFFF">🗓️ 31 DE ENERO </div>
     
     <div class="match-card" style="border: 1px solid gold;">
         <div class="match-card-header" style="color: gold;">⚽ FECHA 14 • LIGA</div>
@@ -1015,7 +1012,7 @@
     </div>
     </div>
         
-        <div class="date-label">🗓️ 01 DE FEBRERO </div>
+        <div class="date-label" style="color: #FFFFFF">🗓️ 01 DE FEBRERO </div>
         
     <div class="match-card" style="border: 1px solid gold;">
         <div class="match-card-header" style="color: gold;">⚽ FECHA 17 • LIGA</div>
@@ -1077,7 +1074,7 @@
     </div>
     </div>
 
-        <div class="date-label">🗓️ 02 DE FEBRERO </div>
+        <div class="date-label" style="color: #FFFFFF">🗓️ 02 DE FEBRERO </div>
         
     <div class="match-card" style="border: 1px solid gold;">
         <div class="match-card-header" style="color: gold;">⚽ FECHA 20 • LIGA</div>
@@ -1231,7 +1228,7 @@
             transition: 0.3s; z-index: 10; cursor: pointer;
         }
 
-        .nav-item img { width: 18px; height: 18px; filter: brightness(0.4); transition: 0.3s; }
+        .nav-item img { width: 25px; height: 25px; filter: brightness(0.4); transition: 0.3s; }
 
         .nav-item.active { color: #3b82f6; }
         .nav-item.active img { filter: brightness(1) drop-shadow(0 0 5px #3b82f6); transform: translateY(-2px); }
@@ -1252,9 +1249,23 @@
 </nav>
 
    <script>
-      // 1. Definir la música (global)
-var miMusica = new Audio('music.mp3');
-miMusica.loop = true;
+     // 1. Definir la lista de canciones y el reproductor
+var canciones = ['fran.mp3', 'music.mp3']; // Ahora es una lista válida
+var indiceActual = 0;
+var miMusica = new Audio(canciones[indiceActual]);
+miMusica.loop = false; // Lo ponemos en false para que al terminar pueda pasar a la siguiente
+
+// Función para cambiar al siguiente tema (Agrégala a tu botón ⏩)
+function siguienteCancion() {
+    miMusica.pause();
+    indiceActual = (indiceActual + 1) % canciones.length; // Cambia entre 0 y 1
+    miMusica.src = canciones[indiceActual];
+    miMusica.play();
+    document.getElementById('btnPlayPausa').innerText = "⏸️";
+}
+
+// Para que al terminar una, empiece la otra solita
+miMusica.onended = siguienteCancion;
 
 // 2. La función que dispara todo
 function cerrarBienvenida() {
@@ -1287,45 +1298,55 @@ function toggleMusica() {
         btn.innerText = "▶️";
     }
 }
-        setTimeout(() => { 
-            const s = document.getElementById('splash');
-            s.style.opacity = '0'; setTimeout(() => s.style.visibility = 'hidden', 800); 
-        }, 2200);
 
-        function tab(id, el) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            el.classList.add('active');
-            window.scrollTo(0,0);
-        }
+// --- Resto de tus funciones intactas ---
+setTimeout(() => { 
+    const s = document.getElementById('splash');
+    if(s) {
+        s.style.opacity = '0'; 
+        setTimeout(() => s.style.visibility = 'hidden', 800); 
+    }
+}, 2200);
 
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
+function tab(id, el) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const target = document.getElementById(id);
+    if(target) target.classList.add('active');
+    if(el) el.classList.add('active');
+    window.scrollTo(0,0);
+}
 
-        function openModal() {
-            toggleMenu();
-            document.getElementById('modalCampeones').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-        }
+function toggleMenu() {
+    document.getElementById('sidebar').classList.toggle('active');
+    document.getElementById('overlay').classList.toggle('active');
+}
 
-        function closeModal() {
-            document.getElementById('modalCampeones').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-        }
+function openModal() {
+    toggleMenu();
+    document.getElementById('modalCampeones').classList.add('active');
+    document.getElementById('overlay').classList.add('active');
+}
 
-        function closeAll() {
-            document.getElementById('sidebar').classList.remove('active');
-            document.getElementById('modalCampeones').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-        }
+function closeModal() {
+    document.getElementById('modalCampeones').classList.remove('active');
+    document.getElementById('overlay').classList.remove('active');
+}
 
-        function lanzarConfetti() {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#6366f1', '#ffd700', '#ffffff'] });
-        }
-      
+function closeAll() {
+    document.getElementById('sidebar').classList.remove('active');
+    document.getElementById('modalCampeones').classList.remove('active');
+    document.getElementById('overlay').classList.remove('active');
+}
+
+function lanzarConfetti() {
+    confetti({ 
+        particleCount: 150, 
+        spread: 70, 
+        origin: { y: 0.6 }, 
+        colors: ['#6366f1', '#ffd700', '#ffffff'] 
+    });
+}
     </script>
 </body>
 </html>
