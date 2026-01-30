@@ -1,32 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "9bd75b3e-13cb-4d18-8839-2f1c476660df",
-      // Esto es OBLIGATORIO para que funcione en tu link de GitHub
-      serviceWorkerPath: "onesignalsdkworker.js",
-      serviceWorkerParam: { scope: "/LaLigaFut/" }
-    });
-  });
-
-  function suscribirse() {
-    OneSignalDeferred.push(function(OneSignal) {
-      OneSignal.Notifications.requestPermission();
-    });
-  }
-</script>
 
 <style>
-@keyframes pulse {
+  @keyframes pulse {
     0% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
     50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
     100% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-}
+  }
 </style>
+
+</head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -351,10 +335,8 @@
     </style>
 </head>
 <body>
-    <button onclick="suscribirse()" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #d4af37, #aa8a2e); width: 60px; height: 60px; border-radius: 50%; border: 2px solid #0f172a; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); z-index: 10000; animation: pulse 2s infinite; -webkit-tap-highlight-color: transparent; touch-action: manipulation;">
-    <span style="font-size: 24px; pointer-events: none;">🔔</span>
-</button>
-  
+    
+    
       <div id="control-musica" style="display:none; position: absolute; top: 3px; right: 10px; background: #000B1A; border: 2px solid #D4AF37; padding: 10px; border-radius: 15px; z-index: 100000; text-align: center; min-width: 80px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
     <div style="display: flex; align-items: center; justify-content: center; gap: 5px;">
         <button id="btnPlayPausa" onclick="toggleMusica()" style="background: none; border: none; color: #D4AF37; font-size: 22px; cursor: pointer;">⏸️</button>
@@ -565,7 +547,7 @@
 </header>
 
     <div id="inicio" class="tab-content active">
-        <div class="date-label" style="color: #ef4444;">● PARTIDO IMPORTANTE </div>
+        <div class="date-label" style="color: #ef4444;">● AHORA </div>
         
         <div class="match-card" style="border: 1px solid #ef4444;">
             <div class="match-card-header">
@@ -581,31 +563,31 @@
             </div>
         </div>
 
-        <div class="date-label" style="color: #FFFFFF">PRÓXIMOS PARTIDOS (HOY)</div>
+        <div class="date-label" style="color: #FFFFFF">PRÓXIMOS PARTIDOS </div>
         
         <div class="match-card">
-            <div class="match-card-header" style="color: #FFFFFF">HOY • FECHA 11</div>
+            <div class="match-card-header" style="color: #FFFFFF">HOY • FECHA 13</div>
             <div class="teams-container">
                 <div class="team-name team-left">LANZA ALL</div>
                 <div class="score-vs">VS</div>
                 <div class="team-name team-right">ARGENTINA</div>
             </div>
-            <div class="match-info" style="color: gold;">📍 LANZA AIR | 12:30 hs</div>
+            <div class="match-info" style="color: gold;">📍 LANZA AIR | 17:00 hs</div>
         </div>
 
         <div class="match-card">
-            <div class="match-card-header" style="color: #FFFFFF">HOY • FECHA 12</div>
+            <div class="match-card-header" style="color: #FFFFFF">MAÑANA • FECHA 14</div>
             <div class="teams-container">
                 <div class="team-name team-left">ARGENTINA</div>
                 <div class="score-vs">VS</div>
                 <div class="team-name team-right">LANZA ALL</div>
             </div>
-            <div class="match-info" style="color: gold;">📍 TODO DE DIOS | 13:00 hs</div>
+            <div class="match-info" style="color: gold;">📍 TODO DE DIOS | 12:30 hs</div>
         </div>
     </div>
 
     <div id="partidos" class="tab-content">
-    <div class="date-label" style="color: #FFFFFF">🗓️ 27 DE ENERO (MARTES)</div>
+    <div class="date-label" style="color: gold;">🗓️ 27 DE ENERO (MARTES)</div>
     
  <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
     
@@ -797,7 +779,7 @@
     </div>
 </div>
 
-    <div class="date-label" style="color: #FFFFFF">🗓️ 28 DE ENERO (MIÉRCOLES)</div>
+    <div class="date-label" style="color: gold;">🗓️ 28 DE ENERO (MIÉRCOLES)</div>
     
     
 
@@ -954,7 +936,7 @@
     </div>
 </div>
 
-    <div class="date-label" style="color: #FFFFFF">🗓️ 29 DE ENERO (AYER)</div>
+    <div class="date-label" style="color: gold;">🗓️ 29 DE ENERO (AYER)</div>
 
     <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
     
@@ -1139,43 +1121,115 @@
     </div>
 </div>
         
-    <div class="date-label" style="color: #FFFFFF">🗓️ 30 DE ENERO (HOY)</div>
+    <div class="date-label" style="color: gold;">🗓️ 30 DE ENERO (HOY)</div>
         
-    <div class="match-card" style="border: 1px solid gold;">
-        <div class="match-card-header" style="color: gold;">⚽ FECHA 11 • LIGA</div>
-        <div class="teams-container">
-            <div class="team-name team-left">LANZA ALL</div>
-            <div class="score-vs">12:30</div>
-            <div class="team-name team-right">ARGENTINA</div>
-        </div>
-        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
-        🏟️ LANZA ALL STADIUM •
+    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
+    
+    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
+        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 11 • LIGA
     </div>
+    
+    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
+        
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">0</div>
+            <div style="color: #64748b; font-weight: bold;">-</div>
+            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
+        </div>
+        
+        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
     </div>
 
-    <div class="match-card" style="border: 1px solid gold;">
-        <div class="match-card-header" style="color: gold;">⚽ FECHA 12 • LIGA</div>
-        <div class="teams-container">
-            <div class="team-name team-left">ARGENTINA</div>
-            <div class="score-vs">13:00</div>
-            <div class="team-name team-right">LANZA ALL</div>
+    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
+        
+        <div class="goals-left" style="flex: 1; text-align: left;">
         </div>
-        <div class="match-info" style="color: gold; font-size: 10px; margin-top: 8px;">
-        🏟️ TODO DE DIOS •
-    </div>
+            
+        <div style="width: 20px;"></div>
+
+        <div class="goals-right" style="flex: 1; text-align: right;">
+        </div>
     </div>
 
-    <div class="match-card" style="border: 1px solid #cd7f32;">
-        <div class="match-card-header" style="color: #cd7f32;">🏆 COPA BRONCE • VUELTA</div>
-        <div class="teams-container">
-            <div class="team-name team-left">ARGENTINA</div>
-            <div class="score-vs">15:30</div>
-            <div class="team-name team-right">LANZA ALL</div>
+    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
+        🏟️ LANZA AIR
+    </div>
+</div>
+
+    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
+    
+    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
+        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 12 • LIGA
+    </div>
+    
+    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
+        
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
+            <div style="color: #64748b; font-weight: bold;">-</div>
+            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">0</div>
         </div>
-        <div class="match-info" style="color: #94a3b8; font-size: 10px; margin-top: 8px;">
-        🏟️ TODO DE DIOS •
+        
+        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
     </div>
+
+    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
+        
+        <div class="goals-left" style="flex: 1; text-align: left;">
+        </div>
+            
+        <div style="width: 20px;"></div>
+
+        <div class="goals-right" style="flex: 1; text-align: right;">
+        </div>
     </div>
+
+    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
+        🏟️ TODO DE DIOS
+    </div>
+</div>
+
+    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
+    
+    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
+        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> •🏆 COPA BRONCE • VUELTA
+    </div>
+    
+    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
+        
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">3</div>
+            <div style="color: #64748b; font-weight: bold;">-</div>
+            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">6</div>
+        </div>
+        
+        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
+    </div>
+
+    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
+        
+        <div class="goals-left" style="flex: 1; text-align: left;">
+            <div style="margin-bottom: 2px;">⚽ 4' L.Messi</div>
+            <div style="margin-bottom: 2px;">⚽ 9' Dembele</div>
+            <div style="margin-bottom: 2px;">⚽ 66 Mbappé</div>
+        </div>
+            
+        <div style="width: 20px;"></div>
+
+        <div class="goals-right" style="flex: 1; text-align: right;">
+            <div style="margin-bottom: 2px;">Mac Allister 28' ⚽</div>
+            <div style="margin-bottom: 2px;">Mbappé 69' ⚽</div>
+            <div style="margin-bottom: 2px;">Mbappé 77' ⚽</div>
+        </div>
+    </div>
+
+    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
+        🏟️ TODO DE DIOS
+    </div>
+</div>
 
     <div class="match-card" style="border: 1px solid plat;">
         <div class="match-card-header" style="color: plat;">🏆 COPA PLATA • VUELTA</div>
@@ -1201,7 +1255,7 @@
     </div>
     </div>
 
-    <div class="date-label" style="color: #FFFFFF">🗓️ 31 DE ENERO (MAÑANA)</div>
+    <div class="date-label" style="color: gold;">🗓️ 31 DE ENERO (MAÑANA)</div>
     
     <div class="match-card" style="border: 1px solid gold;">
         <div class="match-card-header" style="color: gold;">⚽ FECHA 14 • LIGA</div>
@@ -1263,7 +1317,7 @@
     </div>
     </div>
         
-        <div class="date-label" style="color: #FFFFFF">🗓️ 01 DE FEBRERO </div>
+        <div class="date-label" style="color: gold;">🗓️ 01 DE FEBRERO </div>
         
     <div class="match-card" style="border: 1px solid gold;">
         <div class="match-card-header" style="color: gold;">⚽ FECHA 17 • LIGA</div>
@@ -1325,7 +1379,7 @@
     </div>
     </div>
 
-        <div class="date-label" style="color: #FFFFFF">🗓️ 02 DE FEBRERO </div>
+        <div class="date-label" style="color: gold;">🗓️ 02 DE FEBRERO </div>
         
     <div class="match-card" style="border: 1px solid gold;">
         <div class="match-card-header" style="color: gold;">⚽ FECHA 20 • LIGA</div>
@@ -1350,13 +1404,13 @@
         🏟️ LANZA ALL STADIUM •
     </div>
     </div>
-        <div class="date-label" style="color: #FFFFFF">🗓️ 03 DE FEBRERO </div>
+        <div class="date-label" style="color: gold;">🗓️ 03 DE FEBRERO </div>
         <div class="date-label" style="color: gold;">🏆 MUNDIAL 🏆</div>
 
     <div class="match-card" style="background: linear-gradient(135deg, #1e1b4b, #020617); border: 2px solid var(--gold); padding: 30px;">
-        <div class="match-card-header" style="color:var(--gold); font-weight:bold; font-size: 14px;">EVENTO FINAL</div>
+        <div class="match-card-header" style="color:var(--gold); font-weight:bold; font-size: 14px;">SUPER EVENTO</div>
         <div class="teams-container" style="justify-content:center; flex-direction:column; gap:10px;">
-            <div style="font-size: 28px; font-weight: 800; color: white; text-shadow: 0 0 10px var(--gold);">🏆 MUNDIAL 2 🏆</div>
+            <div style="font-size: 28px; font-weight: 800; color: white; text-shadow: 0 0 10px var(--gold);">🏆 MUNDIAL LLF 2 🏆</div>
             <div class="score-pill" style="background: var(--gold); color: black; font-size: 18px; padding: 5px 25px;">12:30</div>
         </div>
         <div class="match-info" style="color:white; font-weight:bold; margin-top:15px;">03 DE FEBRERO</div>
@@ -1385,34 +1439,34 @@
             <tbody>
                 <tr>
                     <td style="color:#22c55e; font-weight:bold;">1°</td>
-                    <td style="text-align:left; font-weight:bold;">Lanza All</td>
+                    <td style="text-align:left; font-weight:bold;">La T De</td>
                     <td class="puntos-resaltados">17</td>
                     <td>10</td>
                     <td>5</td>
                     <td>2</td>
-                    <td>3</td>
+                    <td>5</td>
                     <td>22</td>
-                    <td style="color:#22c55e;">+1</td>
+                    <td style="color:#22c55e;">+5</td>
                     <td>
                         <div class="forma-container">
-                            <span class="dot v">V</span><span class="dot v">V</span><span class="dot e">E</span><span class="dot v">V</span><span class="dot d">D</span>
+                            <span class="dot e">E</span><span class="dot d">D</span><span class="dot v">V</span><span class="dot v">V</span><span class="dot v">V</span>
                         </div>
                     </td>
                 </tr>
 
                 <tr>
                     <td style="font-weight:bold;">2°</td>
-                    <td style="text-align:left; font-weight:bold;">Argentina</td>
-                    <td class="puntos-resaltados">11</td>
-                    <td>10</td>
-                    <td>3</td>
+                    <td style="text-align:left; font-weight:bold;">Lanza All</td>
+                    <td class="puntos-resaltados">17</td>
+                    <td>12</td>
+                    <td>5</td>
                     <td>2</td>
                     <td>5</td>
-                    <td>21</td>
-                    <td style="color:#EF4444;">-1</td>
+                    <td>22</td>
+                    <td style="color:#EF4444;">-5</td>
                     <td>
                         <div class="forma-container">
-                            <span class="dot d">D</span><span class="dot d">D</span><span class="dot e">E</span><span class="dot d">D</span><span class="dot v">V</span>
+                            <span class="dot v">V</span><span class="dot e">E</span><span class="dot v">V</span><span class="dot d">D</span><span class="dot d">D</span>
                         </div>
                     </td>
                 </tr>
