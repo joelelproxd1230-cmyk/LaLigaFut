@@ -28,14 +28,6 @@
 }
 </style>
 
-    <style>
-    @keyframes pulse {
-        0% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-        50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
-        100% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-    }
-    </style>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LA LIGA FUT 2026</title>
@@ -362,8 +354,7 @@
     <button onclick="suscribirse()" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #d4af37, #aa8a2e); width: 60px; height: 60px; border-radius: 50%; border: 2px solid #0f172a; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); z-index: 10000; animation: pulse 2s infinite; -webkit-tap-highlight-color: transparent; touch-action: manipulation;">
     <span style="font-size: 24px; pointer-events: none;">🔔</span>
 </button>
-    
-  <body>
+  
       <div id="control-musica" style="display:none; position: absolute; top: 3px; right: 10px; background: #000B1A; border: 2px solid #D4AF37; padding: 10px; border-radius: 15px; z-index: 100000; text-align: center; min-width: 80px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
     <div style="display: flex; align-items: center; justify-content: center; gap: 5px;">
         <button id="btnPlayPausa" onclick="toggleMusica()" style="background: none; border: none; color: #D4AF37; font-size: 22px; cursor: pointer;">⏸️</button>
