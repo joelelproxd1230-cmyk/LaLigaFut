@@ -2,20 +2,28 @@
 <html lang="es">
 <head>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-          appId: "9bd75b3e-13cb-4d18-8839-2f1c476660df",
-        });
-      });
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
+      appId: "9bd75b3e-13cb-4d18-8839-2f1c476660df",
+      // Esto ayuda a que GitHub reconozca el archivo worker
+      serviceWorkerParam: { scope: "/LaLigaFut/" },
+      serviceWorkerPath: "onesignalsdkworker.js",
+    });
+  });
 
-      function suscribirse() {
-        OneSignalDeferred.push(function(OneSignal) {
-            OneSignal.User.PushSubscription.optIn();
-        });
-      }
-    </script>
+  function suscribirse() {
+    // Esta función ahora es más agresiva para mostrar el permiso
+    OneSignalDeferred.push(function(OneSignal) {
+      OneSignal.Notifications.requestPermission();
+    });
+  }
+</script>
+
+<div onclick="suscribirse()" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #d4af37, #aa8a2e); width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); z-index: 9999; border: 2px solid #0f172a; animation: pulse 2s infinite;">
+    <span style="font-size: 22px;">🔔</span>
+</div>
 
     <style>
     @keyframes pulse {
