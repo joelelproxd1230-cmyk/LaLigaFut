@@ -4,21 +4,11 @@
   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
       appId: "9bd75b3e-13cb-4d18-8839-2f1c476660df",
-      // Forzamos la ruta al archivo en minúsculas y la carpeta correcta
-      serviceWorkerPath: "onesignalsdkworker.js",
-      serviceWorkerParam: { scope: "/LaLigaFut/" }
     });
   });
-
-  function suscribirse() {
-    OneSignalDeferred.push(function(OneSignal) {
-      // Abre el cartel de solicitud de permiso
-      OneSignal.Notifications.requestPermission();
-    });
-  }
 </script>
 
 <style>
