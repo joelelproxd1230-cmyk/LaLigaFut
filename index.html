@@ -4,11 +4,20 @@
   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
       appId: "9bd75b3e-13cb-4d18-8839-2f1c476660df",
+      // Esto es OBLIGATORIO para que funcione en tu link de GitHub
+      serviceWorkerPath: "onesignalsdkworker.js",
+      serviceWorkerParam: { scope: "/LaLigaFut/" }
     });
   });
+
+  function suscribirse() {
+    OneSignalDeferred.push(function(OneSignal) {
+      OneSignal.Notifications.requestPermission();
+    });
+  }
 </script>
 
 <style>
