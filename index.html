@@ -638,6 +638,30 @@
         text-align: right;
     }
   
+  /* 1. FONDO GLOBAL PARA TODA LA APP */
+body {
+    background-color: #000000 !important; /* Negro puro */
+    /* Este degradado crea el efecto de "luz violeta" arriba del todo */
+    background-image: radial-gradient(circle at top, #1e0b36 0%, #000000 70%) !important;
+    background-attachment: fixed; /* Para que el fondo no se mueva al hacer scroll */
+    margin: 0;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* 2. ASEGURAR QUE LAS TRES SECCIONES SEAN TRANSPARENTES */
+#inicio, #partidos, #posiciones, .tab-content {
+    background: transparent !important; /* Para que se vea el negro del body */
+    min-height: 100vh;
+    padding-bottom: 120px; /* Espacio para que la isla no tape el contenido */
+}
+
+/* 3. REFUERZO PARA LAS TARJETAS DE NOTICIAS */
+.news-card {
+    background: #000000 !important; /* Fondo negro para la tarjeta */
+    border: 2px solid #8b5cf6; /* Borde violeta */
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
 </style>
 
 <script>
@@ -646,47 +670,6 @@
     }
 </script>
 
-    <div class="sidebar" id="sidebar">
-        <a href="#" class="sidebar-link" onclick="openModal()">🏆 Ver Campeones</a>
-        <a href="#" class="sidebar-link" onclick="alert('Próximamente')">📰 Noticias</a>
-    </div>
-
-    <div class="overlay" id="overlay" onclick="closeAll()"></div>
-
-    <div class="modal" id="modalCampeones">
-        <div class="modal-header">🏅 CAMPEONES ANTERIORES</div>
-        <details class="match-card" style="border-color: gold;">
-            <summary style="color: gold; font-weight: bold;"><span>Temporada 7</span> <span class="arrow">▼</span></summary>
-            <div class="detail-content">
-                <p>🏆 <b>COPA LLF:</b> Lanza All (4-2) Global</p>
-            </div>
-        </details>
-        <details class="match-card" style="border-color: gold;">
-            <summary style="color: gold; font-weight: bold;"><span>Temporada 5</span> <span class="arrow">▼</span></summary>
-            <div class="detail-content">
-                <p>🏆 <b>COPA LLF:</b> Lanza All (6-2) Global</p>
-                <p>🏆 <b>COPA FUT:</b> Lanza All (9-4) Global</p>
-                <p>🏆 <b>SUPER COPA:</b> Argentina (1-0) P.Unico</p>
-                <p>🏆 <b>COPA DE CAMPEONES:</b> Argentina (5-3) P.Unico</p>
-                <p>🏆 <b>COPA DE ORO:</b> Argentina (11-10) Global</p>
-                <p>🏆 <b>COPA DE BRONCE:</b> Lanza All (6-1) P.Unico</p>
-                <p>🏆 <b>COPA DE PLATA:</b> Lanza All (3-0) P.Unico</p>
-                <P>🥇 <b>LIGA:</b> Lanza All (53 pts)</P>
-                
-            </div>
-        </details>
-        <details class="match-card" style="border-color: gold; margin-top: 10px;">
-            <summary style="color: gold; font-weight: bold;"><span>Temporada 4</span> <span class="arrow">▼</span></summary>
-            <div class="detail-content">
-                <p>🏆 <b>COPA FUT:</b> Lanza All (7-6) Global</p>
-                <p>🏆 <b>COPA LLF:</b> Argentina (12-4) Global</p>
-                <p>🏆 <b>COPA NACIONAL DE LLF:</b> Argentina (3-1) P.Unico</p>
-                <p>🏆 <b>COPA DE ORO:</b> Lanza All (10-4) Global</p>
-                <p>🏆 <b>SUPER COPA:</b> Argentina (6-5) Global</p>
-                <p>🥇 <b> LIGA:</b> Lanza All (44 pts)</p>           
-            </div>
-        </details>
-        <button onclick="closeModal()" style="width:100%; background:gold; border:none; padding:12px; border-radius:12px; font-weight:bold; margin-top:15px; cursor:pointer;">CERRAR</button>
     </div>
     <div id="splash">
         <h1>Espera..</h1>
@@ -695,21 +678,39 @@
 
     <header style="
     background: 
-        /* Esto crea las líneas doradas finas */
-        linear-gradient(115deg, transparent 20%, rgba(212, 175, 55, 0.1) 21%, transparent 22%),
-        linear-gradient(115deg, transparent 50%, rgba(212, 175, 55, 0.1) 51%, transparent 52%),
-        /* Este es el fondo azul profundo */
-        radial-gradient(circle at top, #1B63B2 0%, #000B1A 100%);
+        /* Líneas doradas muy sutiles */
+        linear-gradient(115deg, transparent 20%, rgba(212, 175, 55, 0.05) 21%, transparent 22%),
+        linear-gradient(115deg, transparent 50%, rgba(212, 175, 55, 0.05) 51%, transparent 52%),
+        /* FONGO: Negro con un centro Violeta Suave */
+        radial-gradient(circle at center, #1e0b36 0%, #000000 100%);
+    
     padding: 50px 20px;
     text-align: center;
-    border-bottom: 2px solid #1B63B2; /* Línea dorada divisoria abajo */
+    /* Borde inferior Neón Rosa (el #ff007f que querías mantener) */
+    border-bottom: 3px solid #ff007f;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
 ">
-    <h1 style="margin:0; color: #1B63B2; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+    <h1 style="
+        margin: 0; 
+        color: #8b5cf6; 
+        font-size: 2.5rem; 
+        font-weight: 900;
+        text-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+        text-transform: uppercase;
+    ">
         TEMPORADA 9
     </h1>
-    <p style="color: #F5F5F7; margin-top: 10px; letter-spacing: 2px; font-weight: bold; opacity: 0.9;">
+    
+    <p style="
+        color: #F5F5F7; 
+        margin-top: 10px; 
+        letter-spacing: 4px; 
+        font-weight: bold; 
+        opacity: 0.8;
+        font-size: 0.9rem;
+    ">
          LLF 2026
-    </h1>
+    </p>
 </header>
   
   <div id="inicio" class="tab-content active">
