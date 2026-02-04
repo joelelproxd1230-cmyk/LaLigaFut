@@ -25,6 +25,114 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
+/* Contenedor General de los Partidos */
+.match-card-modern {
+    background: linear-gradient(145deg, #020617, #0f172a);
+    border: 1px solid #00f2fe;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.15);
+    margin: 15px auto;
+    padding: 15px;
+    max-width: 450px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    color: white;
+}
+
+/* Encabezado: Titulo e Icono */
+.match-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.comp-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid #00f2fe;
+    object-fit: cover;
+}
+
+.comp-title {
+    background: linear-gradient(to right, #00f2fe, #0078ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+/* Grilla de Equipos */
+.teams-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.team-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f8fafc;
+    text-transform: uppercase;
+}
+
+/* Caja de Horario/Resultado */
+.score-box {
+    background: rgba(0, 242, 254, 0.1);
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 242, 254, 0.5);
+    min-width: 75px;
+}
+
+.match-time {
+    color: #00f2fe;
+    font-weight: 800;
+    font-size: 13px;
+    text-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+}
+
+/* Footer: Estadio */
+.match-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 12px;
+    padding-top: 8px;
+    text-align: center;
+}
+
+.stadium-info {
+    font-size: 9px;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.team-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.team-logo {
+    width: 45px; /* Tamaño ideal para móvil */
+    height: 45px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0, 242, 254, 0.2));
+}
+
+/* Ajustamos la grilla para que todo entre perfecto */
+.teams-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 5px;
+    margin: 15px 0;
+}
         :root {
             --azul-morado: #0052FF; 
             --degradado: linear-gradient(135deg, #1e1b4b 0%, #020617 100%);
@@ -361,19 +469,19 @@
     align-items: center;
     text-align: center;">
     
-    <h1 style="color: #FFD700; font-size: 3.5rem; text-shadow: 0 0 15px rgba(255,215,0,0.6);">
-        ¡TEMPORADA 8!
+    <h1 style="color: balck; font-size: 3.5rem; text-shadow: 0 0 15px rgba(255,215,0,0.6);">
+        ¡ARGENTINA ES EL NUEVO CAMPEON DEL MUNDIAL LLF!
     </h1>
     
     <button onclick="cerrarBienvenida()" style="
         margin-top: 20px;
         padding: 12px 25px;
-        background: #FFD700;
+        background: #ff007f;
         border: none;
         font-weight: bold;
         cursor: pointer;
         border-radius: 50px;">
-        CONTINUAR A LA TEMPORADA 8
+        CONTINUAR A LA TEMPORADA 9
     </button>
 </div>
 
@@ -472,6 +580,64 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+  
+  /* Contenedor de Noticias */
+    .news-container {
+        padding: 10px;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .news-card {
+        background: #000000; /* Fondo negro sólido para que resalte el neón */
+        border: 2px solid #8b5cf6; /* Borde violeta */
+        border-radius: 25px; /* Súper circular/moderno */
+        padding: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); /* Brillo violeta */
+        overflow: hidden;
+    }
+
+    /* El TAG circular moderno */
+    .news-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 15px;
+        border-radius: 50px; /* Forma de píldora/círculo */
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        background: #ff007f; /* Rosa fuerte */
+        color: white;
+        box-shadow: 0 0 10px #ff007f;
+    }
+
+    .news-title {
+        font-size: 20px;
+        font-weight: 900;
+        color: #fff;
+        display: block;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+    }
+
+    .news-desc {
+        font-size: 14px;
+        color: #e2e8f0;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    /* Estilo para el tiempo automático */
+    .news-time-auto {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #a78bfa; /* Violeta claro */
+        text-align: right;
+    }
+  
 </style>
 
 <script>
@@ -533,1264 +699,880 @@
         linear-gradient(115deg, transparent 20%, rgba(212, 175, 55, 0.1) 21%, transparent 22%),
         linear-gradient(115deg, transparent 50%, rgba(212, 175, 55, 0.1) 51%, transparent 52%),
         /* Este es el fondo azul profundo */
-        radial-gradient(circle at top, #002B5B 0%, #000B1A 100%);
+        radial-gradient(circle at top, #1B63B2 0%, #000B1A 100%);
     padding: 50px 20px;
     text-align: center;
-    border-bottom: 2px solid #D4AF37; /* Línea dorada divisoria abajo */
+    border-bottom: 2px solid #1B63B2; /* Línea dorada divisoria abajo */
 ">
-    <h1 style="margin:0; color: #D4AF37; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-        TEMPORADA 8
+    <h1 style="margin:0; color: #1B63B2; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+        TEMPORADA 9
     </h1>
     <p style="color: #F5F5F7; margin-top: 10px; letter-spacing: 2px; font-weight: bold; opacity: 0.9;">
-         11 horas restante • LLF 2026
+         LLF 2026
     </h1>
 </header>
-
-    <div id="inicio" class="tab-content active">
-        <div class="date-label" style="color: #ef4444;">● PARTIDO IMPORTANTE </div>
-        
-        <div class="match-card" style="border: 1px solid #ef4444;">
-            <div class="match-card-header">
-            <span style="color: gold;">MUNDIAL LLF</span style="color: gold;"> • VUELTA <span style="color:#FFFFFF">HOY</span>
-            </div>
-            <div class="teams-container">
-                <div class="team-name team-left">LANZA ALL</div>
-                <div class="score-vs">VS</div>
-                <div class="team-name team-right">LA T DE</div>
-            </div>
-            <div class="match-info">
-                📍 LANZA AIR | 12:30 hs
-            </div>
-        </div>
-
-        <div class="date-label" style="color: #FFFFFF">PRÓXIMOS PARTIDOS </div>
-        
-        <div class="match-card">
-            <div class="match-card-header" style="color: #FFFFFF">HOY • FECHA 1</div>
-            <div class="teams-container">
-                <div class="team-name team-left">LANZA ALL</div>
-                <div class="score-vs">VS</div>
-                <div class="team-name team-right">LA T DE</div>
-            </div>
-            <div class="match-info" style="color: gold;">📍 LANZA AIR | 17:30 hs</div>
-        </div>
-
-        <div class="match-card">
-            <div class="match-card-header" style="color: white;">HOY • FECHA 2</div>
-            <div class="teams-container">
-                <div class="team-name team-left">LANZA ALL</div>
-                <div class="score-vs">VS</div>
-                <div class="team-name team-right">LA T DE</div>
-            </div>
-            <div class="match-info" style="color: gold;">📍 LANZA AIR | 18:20 hs</div>
-        </div>
-    </div>
-
-    <div id="partidos" class="tab-content">
-    <div class="date-label" style="color: gold;">🗓️ 27 DE ENERO (MARTES)</div>
-    
- <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 1 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">4</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 15' Haaland</div>
-            <div style="margin-bottom: 2px;">⚽ 90' Van Dijk</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Saka 15' ⚽</div>
-            <div style="margin-bottom: 2px;">Saka 27' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 54' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 77' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS •
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 2 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 49' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 79' Messi</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 45' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS •
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 3 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 44' Courtois (PEN)</div>
-            <div style="margin-bottom: 2px;">⚽ 68' Rudiger (OG)</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 17' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 89' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS •
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • COPA BRONCE • IDA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 33' Mbappé</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-        
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 27' ⚽</div>
-            <div style="margin-bottom: 2px;">Messi 38' ⚽</div>
-            <div style="margin-bottom: 2px;">Messi 45' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL STADIUM •
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 4 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">2</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 37' Mbappé</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Haaland 45' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 71' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL STADIUM •
-    </div>
-</div>
-
-    <div class="date-label" style="color: gold;">🗓️ 28 DE ENERO (MIÉRCOLES)</div>
-    
-    
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 6 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">AEGENTINA</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 43' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 58' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 77' Mbappé</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Haaland 16' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL STADIUM •
-    </div>
-</div>
-
-  <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • COPA PLATA • IDA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 25' Haaland</div>
-            <div style="margin-bottom: 2px;">⚽ 68' Haaland</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 57' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 65' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 78' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS •
-    </div>
-</div>
-
-   <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 7 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 67' J.Alvarez</div>
-            <div style="margin-bottom: 2px;">⚽ 83' J.Alvarez</div>
-            <div style="margin-bottom: 2px;">⚽ 90' J.Alvarez</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Haaland 49' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL STADIUM •
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 8 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 14' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 70' Haaland</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">J.Alvarez 45' ⚽</div>
-            <div style="margin-bottom: 2px;">J.Alvarez 52' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS •
-    </div>
-</div>
-
-    <div class="date-label" style="color: gold;">🗓️ 29 DE ENERO (JUEVES)</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • COPA FUT • IDA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 45' Haaland</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 19' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL STADIUM •
-    </div>
-</div>
-        <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • SUPER COPA • ÚNICO
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">2</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 66' Mac Allister</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 45' ⚽</div>
-            <div style="margin-bottom: 2px;">Haaland 83' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL STADIUM •
-    </div>
-</div>
-
-   <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 9 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c553; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">ARGENTINA</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 43' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 90' T.Partey</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Benzema 81' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL STADIUM •
-    </div>
-</div>
-        <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> •COPA LLF • IDA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 59' Dembele</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">L.Messi 30' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS
-    </div>
-</div>
-        <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 10 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">4</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 45' Simeone</div>
-            <div style="margin-bottom: 2px;">⚽ 49' Mbappé</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Dembele 4' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 36' ⚽</div>
-            <div style="margin-bottom: 2px;">Dembele 69' ⚽</div>
-            <div style="margin-bottom: 2px;">Dembele 76' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-        
-    <div class="date-label" style="color: gold;">🗓️ 30 DE ENERO (VIERNES)</div>
-        
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 11 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">0</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 12 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">0</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • COPA BRONCE • VUELTA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">3</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">6</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 4' L.Messi</div>
-            <div style="margin-bottom: 2px;">⚽ 9' Dembele</div>
-            <div style="margin-bottom: 2px;">⚽ 66 Mbappé</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mac Allister 28' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 69' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 77' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • COPA PLATA • VUELTA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">3(8)</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">4(9)</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 15' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 49' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 75' Rudigee</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 11' ⚽</div>
-            <div style="margin-bottom: 2px;">Haaland 35' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 45' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 83' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 13 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">3</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">4</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 45' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 63' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 71' Mbappé</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 13' ⚽</div>
-            <div style="margin-bottom: 2px;">Haaland 51' ⚽</div>
-            <div style="margin-bottom: 2px;">Haaland 79' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 84' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-
-    <div class="date-label" style="color: gold;">🗓️ 31 DE ENERO (SABADO)</div>
-    
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 14 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">0</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 51' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 79' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 90' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • COPA LLF • VUELTA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">4</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 19' Saka</div>
-            <div style="margin-bottom: 2px;">⚽ 45' Van Dijk</div>
-            <div style="margin-bottom: 2px;">⚽ 78' J.Alvarez</div>
-            <div style="margin-bottom: 2px;">⚽ 88' N.Mendes</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Haaland 15' ⚽</div>
-            <div style="margin-bottom: 2px;">Haaland 39' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 15 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 38' Haaland</div>
-            <div style="margin-bottom: 2px;">⚽ 75' Haaland</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Messi 45' ⚽</div>
-            <div style="margin-bottom: 2px;">Saka 61' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 71' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> •COPA FUT • VUELTA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 11' Saka</div>
-            <div style="margin-bottom: 2px;">⚽ 89' J.Alvarez</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Haaland 15' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 31' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 97'(T.E) ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 16 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">0</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL
-    </div>
-</div>
-        
-        <div class="date-label" style="color: gold;">🗓️ 01 DE FEBRERO (AYER) </div>
-        
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 17 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">2</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 53' Mac Allister</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Haaland 8' ⚽</div>
-            <div style="margin-bottom: 2px;">Haaland 18' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 18 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">4</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">3</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 11' Haaland</div>
-            <div style="margin-bottom: 2px;">⚽ 54' Bezema</div>
-            <div style="margin-bottom: 2px;">⚽ 63' Van Dijk</div>
-            <div style="margin-bottom: 2px;">⚽ 87' Haaland</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 8' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 81' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 90' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS
-    </div>
-</div>
-    
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> •COPA DE CAMPEONES • UNICO
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">5</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">4</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 4' Haaland</div>
-            <div style="margin-bottom: 2px;">⚽ 25' Benzema</div>
-            <div style="margin-bottom: 2px;">⚽ 54' Haaland</div>
-            <div style="margin-bottom: 2px;">⚽ 69' Benzema</div>
-            <div style="margin-bottom: 2px;">⚽ 93' Haaland</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 19' ⚽</div>
-            <div style="margin-bottom: 2px;">Virgil 30' E.C ⚽</div>
-            <div style="margin-bottom: 2px;">Salah 65' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 78' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 19 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">5</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">2</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 29' Mabppé</div>
-            <div style="margin-bottom: 2px;">⚽ 41' Messi</div>
-            <div style="margin-bottom: 2px;">⚽ 69' Mac Allister</div>
-            <div style="margin-bottom: 2px;">⚽ 78' Mbappé</div>
-            <div style="margin-bottom: 2px;">⚽ 90' Mbappé</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 21' ⚽</div>
-            <div style="margin-bottom: 2px;">Haaland 58' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • COPA DIAMANTE • IDA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">0</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA ALL
-    </div>
-</div>
-
-        <div class="date-label" style="color: gold;">🗓️ 02 DE FEBRERO (HOY)</div>
-        
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> • FECHA 20 • LIGA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">2</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LA T DE</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 10' Mbappé</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Haaland 5' ⚽</div>
-            <div style="margin-bottom: 2px;">Haaland 13' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ LANZA AIR
-    </div>
-</div>
-
-    <div class="match-card" style="border-left: 4px solid #22c55e; background: linear-gradient(to right, #111827, #1e1b4b); margin-bottom: 15px; border-radius: 12px; padding: 15px; font-family: sans-serif; color: white;">
-    
-    <div class="match-card-header" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
-        <span style="color: #22c55e; font-weight: bold;">● FINALIZADO</span> •COPA DIAMANTE • VUELTA
-    </div>
-    
-    <div class="teams-container" style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-        <div class="team-name" style="flex: 1; text-align: left; font-weight: bold; font-size: 14px;">LA T DE</div>
-        
-        <div style="display: flex; align-items: center; gap: 8px;">
-            <div class="score-pill" style="background: #334155; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold;">1</div>
-            <div style="color: #64748b; font-weight: bold;">-</div>
-            <div class="score-pill" style="background: #22c55e; color: white; font-size: 20px; padding: 5px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);">3</div>
-        </div>
-        
-        <div class="team-name" style="flex: 1; text-align: right; font-weight: bold; font-size: 14px;">LANZA ALL</div>
-    </div>
-
-    <div class="goals-grid" style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #cbd5e1;">
-        
-        <div class="goals-left" style="flex: 1; text-align: left;">
-            <div style="margin-bottom: 2px;">⚽ 90' Haaland</div>
-        </div>
-            
-        <div style="width: 20px;"></div>
-
-        <div class="goals-right" style="flex: 1; text-align: right;">
-            <div style="margin-bottom: 2px;">Mbappé 22' ⚽</div>
-            <div style="margin-bottom: 2px;">Salah 83' ⚽</div>
-            <div style="margin-bottom: 2px;">Mbappé 87' ⚽</div>
-        </div>
-    </div>
-
-    <div class="match-info" style="color: #64748b; font-size: 10px; margin-top: 12px; text-align: center; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
-        🏟️ TODO DE DIOS
-    </div>
-</div>
-        <div class="date-label" style="color: gold;">🗓️ 03 DE FEBRERO </div>
-        <div class="date-label" style="color: gold;">🏆 MUNDIAL 🏆</div>
-
-    <div class="match-card" style="background: linear-gradient(135deg, #1e1b4b, #020617); border: 2px solid var(--gold); padding: 30px;">
-        <div class="match-card-header" style="color:var(--gold); font-weight:bold; font-size: 14px;">SUPER EVENTO</div>
-        <div class="teams-container" style="justify-content:center; flex-direction:column; gap:10px;">
-            <div style="font-size: 28px; font-weight: 800; color: white; text-shadow: 0 0 10px var(--gold);">🏆 MUNDIAL LLF 2 🏆</div>
-            <div class="score-pill" style="background: var(--gold); color: black; font-size: 18px; padding: 5px 25px;">12:30</div>
-        </div>
-        <div class="match-info" style="color:white; font-weight:bold; margin-top:15px;">03 DE FEBRERO</div>
-    </div>
-</div>
   
+  <div id="inicio" class="tab-content active">
+    <div class="news-container">
+        <h2 style="color: white; margin-left: 10px; font-weight: 900; text-transform: uppercase; font-size: 16px;">🔥 Últimas Noticias</h2>
+
+        <div class="news-card">
+            <div class="news-tag">Mercado</div>
+            <span class="news-title">Bombazo en los Pases</span>
+            <p class="news-desc">RABIOT ES NUEVO JUGADOR DE LANZA ALL</p>
+            <span class="news-time-auto" data-time="2026-02-04T02:49:00">Cargando...</span>
+        </div>
+
+        <div class="news-card">
+            <div class="news-tag">Torneo</div>
+            <span class="news-title">Nuevos Horarios</span>
+            <p class="news-desc">Se confirma el intervalo de 50 minutos para cada partido.</p>
+            <span class="news-time-auto" data-time="2026-02-04T01:30:00">Cargando...</span>
+        </div>
+    </div>
+</div>
+    <div id="partidos" class="tab-content">
+    <div class="date-label" style="color: gold;">🗓️ 4 DE FEBRERO</div>
+    
+      <div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 1 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">17:30 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 2 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:20 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 3 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">19:30 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 4 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">22:45 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA BRONCE • IDA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">23:00 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA PLATA • IDA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">23:15 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+      
+      <div class="date-label" style="color: gold;">🗓️ 6 DE FEBRERO</div>
+      
+     <div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 5 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">15:30 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 6 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">16:20 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 7 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">17:10 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA ORO • IDA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:00 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 8 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:50 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 9 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">19:40 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+      
+     <div class="date-label" style="color: gold;">🗓️ 7 DE FEBRERO</div>
+      
+      <div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 10 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">15:30 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA PLATA • VUELTA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">16:20 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 11 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">17:10 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 12 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:00 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 13 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:50 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA BRONCE • VUELTA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">19:40 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+      
+      <div class="date-label" style="color: gold;">🗓️ 9 DE FEBRERO</div>
+      
+      <div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 14 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">15:30 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA DE CAMPEONES</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">16:20 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA DIAMANTE • IDA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">17:10 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA ORO • VUELTA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:00 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 15 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:50 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 16 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">19:40 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+      
+      <div class="date-label" style="color: gold;">🗓️ 11 DE FEBRERO</div>
+      
+      <div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 17 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">15:30 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 18 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">16:20 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 19 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">17:10 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+      
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> SUPER COPA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:00 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA LLF • IDA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:50 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 20 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">19:40 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+      
+      <div class="date-label" style="color: gold;">🗓️ 12 DE FEBRERO</div>
+      
+      <div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 21 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">15:30 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 22 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">16:20 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 23 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">17:10 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA FUT • IDA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:00 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 24 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:50 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 25 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">19:40 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+      
+      <div class="date-label" style="color: gold;">🗓️ 14 DE FEBRERO</div>
+      
+      <div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> MUNDIALITO LLF</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">15:30 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA DIAMANTE • VUELTA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">16:20 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA FUT • VUELTA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">17:10 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="copa.png" class="comp-icon">
+        <span class="comp-title"> COPA LLF • VUELTA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:00 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 26 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        <div class="score-box"><span class="match-time">18:50 PM</span></div>
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ TODO DE DIOS</span></div>
+</div>
+
+<div class="match-card-modern">
+    <div class="match-header">
+        <img src="logoliga.png" class="comp-icon">
+        <span class="comp-title"> FECHA 27 • LIGA</span>
+    </div>
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+        <div class="score-box"><span class="match-time">19:40 PM</span></div>
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+    </div>
+    <div class="match-footer"><span class="stadium-info">🏟️ LANZA AIR</span></div>
+</div>
+      
+      <div class="date-label" style="color: gold;">🗓️ 15 DE FEBRERO</div>
+      
+      <div class="match-card-modern">
+    <div class="match-header">
+        <img src="icono-mundial.png" class="comp-icon">
+        <span class="comp-title"> MUNDIAL LLF • GRAN FINAL</span>
+    </div>
+
+    <div class="teams-grid">
+        <div class="team-content">
+            <img src="latde.png" class="team-logo">
+            <span class="team-name">LA T DE</span>
+        </div>
+        
+        <div class="score-box">
+            <span class="match-time">20:00 PM</span>
+        </div>
+        
+        <div class="team-content">
+            <img src="lanzaall.png" class="team-logo">
+            <span class="team-name">LANZA ALL</span>
+        </div>
+    </div>
+
+    <div class="match-footer">
+        <span class="stadium-info">🏟️ TODO DE DIOS</span>
+    </div>
+  </div>
+</div>
     <div id="tabla" class="tab-content">
     <div class="date-label" style="color:#D4AF37; text-align:center; margin-bottom:15px;"> CLASIFICACIÓN DE LIGA</div>
     
@@ -1813,13 +1595,13 @@
                 <tr>
                     <td style="color:#22c55e; font-weight:bold;">1°</td>
                     <td style="text-align:left; font-weight:bold;">Lanza All</td>
-                    <td class="puntos-resaltados">29</td>
-                    <td>20</td>
-                    <td>9</td>
-                    <td>2</td>
-                    <td>9</td>
-                    <td>45</td>
-                    <td style="color: green;">+1</td>
+                    <td class="puntos-resaltados">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td style="color: green;">0</td>
                     <td>
                         <div class="forma-container">
                             <span class="dot v">V</span><span class="dot d">D</span><span class="dot d">D</span><span class="dot v">V</span><span class="dot d">D</span>
@@ -1830,13 +1612,13 @@
                 <tr>
                     <td style="font-weight:bold;">2°</td>
                     <td style="text-align:left; font-weight:bold;">La T De</td>
-                    <td class="puntos-resaltados">26</td>
-                    <td>20</td>
-                    <td>9</td>
-                    <td>2</td>
-                    <td>9</td>
-                    <td>44</td>
-                    <td style="color: red;">-1</td>
+                    <td class="puntos-resaltados">0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td style="color: green;">0</td>
                     <td>
                         <div class="forma-container">
                             <span class="dot d">D</span><span class="dot v">V</span><span class="dot v">V</span><span class="dot d">D</span><span class="dot v">V</span>
@@ -1864,6 +1646,7 @@
           <p>🏆 <b>COPA FUT:</b> La T De (4-3) Global</p>
           <p>🏆 <b>COPA DIAMANTE:</b> Lanza All (6-1) Global</p>
           <p>🏅 <b>LIGA:</b> Lanza All (29 pts)</p>
+          <p>🏆 <b>MUNDIAL 2 LLF</b> La T De (3-1 Partidos)</p>
         </div>
     </details>
         
@@ -1923,60 +1706,74 @@
     display: block !important; /* Solo la que tiene 'active' se muestra */
 }
 
-        /* --- TU ISLA NAVEGACIÓN --- */
-        .nav-container {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70%;
-            max-width: 280px;
-            height: 55px;
-            background: #020617;
-            border-radius: 100px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 9999;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-            overflow: hidden;
-        }
+        /* --- TU ISLA NAVEGACIÓN (MODIFICADA) --- */
+.nav-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 280px;
+    height: 55px;
+    background: #000000; /* Negro puro */
+    border-radius: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9); /* Sombra más pesada */
+    overflow: hidden;
+}
 
-        .nav-container::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, #1e3a8a, #000, #3b82f6, #000, #1e3a8a);
-            animation: girarBorde 4s linear infinite;
-            z-index: -2;
-        }
+/* El borde que gira (Ahora Violeta y Rosa) */
+.nav-container::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    /* Cambié los azules por Violeta (#8b5cf6) y Rosa (#ff007f) */
+    background: conic-gradient(from 0deg, #8b5cf6, #000, #ff007f, #000, #8b5cf6);
+    animation: girarBorde 4s linear infinite;
+    z-index: -2;
+}
 
-        .nav-container::after {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            background: #0f172a;
-            border-radius: 100px;
-            z-index: -1;
-        }
+/* El fondo interior de la isla */
+.nav-container::after {
+    content: '';
+    position: absolute;
+    inset: 2px; /* Grosor del borde */
+    background: #000000; /* Fondo interno NEGRO */
+    border-radius: 100px;
+    z-index: -1;
+}
 
-        @keyframes girarBorde {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+@keyframes girarBorde {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-        .nav-item {
-            background: none; border: none; color: #94a3b8;
-            display: flex; flex-direction: column; align-items: center;
-            font-size: 9px; font-weight: 600; gap: 2px; flex: 1;
-            transition: 0.3s; z-index: 10; cursor: pointer;
-        }
+.nav-item {
+    background: none; border: none; color: #64748b; /* Gris apagado */
+    display: flex; flex-direction: column; align-items: center;
+    font-size: 9px; font-weight: 600; gap: 2px; flex: 1;
+    transition: 0.3s; z-index: 10; cursor: pointer;
+}
 
-        .nav-item img { width: 25px; height: 25px; filter: brightness(0.4); transition: 0.3s; }
+.nav-item img { 
+    width: 25px; height: 25px; 
+    filter: brightness(0.3); /* Más oscuros cuando están inactivos */
+    transition: 0.3s; 
+}
 
-        .nav-item.active { color: #3b82f6; }
-        .nav-item.active img { filter: brightness(1) drop-shadow(0 0 5px #3b82f6); transform: translateY(-2px); }
+/* Estado Activo: Ahora brilla en ROSA para combinar con los Tags */
+.nav-item.active { 
+    color: #ff007f; /* Rosa neón */
+}
+
+.nav-item.active img { 
+    filter: brightness(1) drop-shadow(0 0 8px #ff007f); 
+    transform: translateY(-2px); 
+}
     </style>
 
     <div class="nav-item active" onclick="tab('inicio', this)">
@@ -1995,7 +1792,7 @@
 
    <script>
      // 1. Definir la lista de canciones y el reproductor
-var canciones = ['music.mp3', 'fran.mp3', 'musica.mp3']; // Ahora es una lista válida
+var canciones = ['llf.mp3', 'fran.mp3', 'musica.mp3']; // Ahora es una lista válida
 var indiceActual = 0;
 var miMusica = new Audio(canciones[indiceActual]);
 miMusica.loop = false; // Lo ponemos en false para que al terminar pueda pasar a la siguiente
@@ -2098,6 +1895,29 @@ fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk-alte
 webpushr('init','BN8h0awyVMt8NOr8oAz6KhQbtejf4I-Xic6PGUdGdg2qpDC0kxOWxlNi_s0wskTKqaZa3Iw1hwYhaXhsVaZUYpI','https://joelelproxd1230-cmyk.github.io/LaLigaFut/webpushr-sw.js','/LaLigaFut/');</script>
 <!-- end webpushr tracking code -->
   
+<script>
+    function actualizarTiempos() {
+        const spans = document.querySelectorAll('.news-time-auto');
+        const ahora = new Date();
+
+        spans.forEach(span => {
+            const fechaPublicacion = new Date(span.getAttribute('data-time'));
+            const diferencia = Math.floor((ahora - fechaPublicacion) / 1000); // diferencia en segundos
+
+            let texto = '';
+            if (diferencia < 60) texto = 'Recién publicado';
+            else if (diferencia < 3600) texto = `Hace ${Math.floor(diferencia / 60)} min`;
+            else if (diferencia < 86400) texto = `Hace ${Math.floor(diferencia / 3600)} horas`;
+            else texto = `Hace ${Math.floor(diferencia / 86400)} días`;
+
+            span.innerText = `Publicado: ${texto}`;
+        });
+    }
+
+    // Ejecutar al cargar y cada minuto
+    actualizarTiempos();
+    setInterval(actualizarTiempos, 60000);
+</script>
     </script>
 </body>
 </html>
