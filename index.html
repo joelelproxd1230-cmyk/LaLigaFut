@@ -7,6 +7,140 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
     
+    <!-- CSS PARA ADMIN PANEL -->
+<style>
+    .admin-panel {
+        background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(107, 15, 26, 0.2));
+        border-radius: 25px;
+        padding: 35px;
+        border: 2px solid var(--accent);
+        display: none;
+        margin-top: 40px;
+    }
+    
+    body.light-mode .admin-panel {
+        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+    }
+    
+    .admin-panel.active {
+        display: block;
+        animation: fadeInUp 0.5s ease;
+    }
+    
+    .admin-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 25px;
+    }
+    
+    .admin-card {
+        background: rgba(255,255,255,0.05);
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: var(--transition);
+    }
+    
+    body.light-mode .admin-card {
+        background: rgba(0,0,0,0.03);
+        border-color: rgba(0,0,0,0.1);
+    }
+    
+    .admin-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 215, 0, 0.3);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+    
+    .admin-card h4 {
+        color: var(--accent);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 16px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.7);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    
+    body.light-mode .form-group label {
+        color: rgba(0,0,0,0.7);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        border-radius: 8px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 14px;
+        transition: var(--transition);
+    }
+    
+    body.light-mode .form-group input,
+    body.light-mode .form-group select,
+    body.light-mode .form-group textarea {
+        background: rgba(0,0,0,0.05);
+        border-color: rgba(0,0,0,0.2);
+        color: #1a1a1a;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+    
+    .btn-admin {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, var(--accent), #ff6b6b);
+        border: none;
+        color: black;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 1px;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+    }
+    
+    .btn-admin:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+    }
+
     /* TARJETA DE PARTIDO EXPANDIDA */
     .match-card-premium {
         background: var(--glass);
@@ -1596,6 +1730,221 @@
 
     <!-- CONTENIDO -->
     <main class="main-content">
+        
+        <!-- PANEL ADMIN (solo visible para admin) -->
+<section class="section admin-panel" id="adminPanel">
+    <h2 class="section-title"><i class="fas fa-cog" style="color: var(--accent);"></i> Panel de Administración</h2>
+    
+    <div class="admin-grid">
+        <!-- Agregar Partido -->
+        <div class="admin-card">
+            <h4><i class="fas fa-plus-circle" style="color: var(--accent);"></i> Agregar Partido</h4>
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" id="matchDate">
+            </div>
+            <div class="form-group">
+                <label>Competición</label>
+                <select id="matchCompetition">
+                    <option value="Liga">Liga</option>
+                    <option value="Copa Oro">Copa Oro</option>
+                    <option value="Copa Plata">Copa Plata</option>
+                    <option value="Copa Bronce">Copa Bronce</option>
+                    <option value="Super Copa">Super Copa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Local</label>
+                <select id="homeTeam">
+                    <option value="lanza">Lanza All</option>
+                    <option value="tde">La T De</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Visitante</label>
+                <select id="awayTeam">
+                    <option value="tde">La T De</option>
+                    <option value="lanza">Lanza All</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Horario</label>
+                <input type="time" id="matchTime">
+            </div>
+            <button class="btn-admin" onclick="addMatch()">
+                <i class="fas fa-plus"></i> Crear Partido
+            </button>
+        </div>
+
+        <!-- Agregar Resultado -->
+        <div class="admin-card">
+            <h4><i class="fas fa-edit" style="color: #00ff88;"></i> Cargar Resultado</h4>
+            <div class="form-group">
+                <label>Partido</label>
+                <select id="resultMatch">
+                    <option>Seleccionar partido...</option>
+                </select>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                    <label>Goles Local</label>
+                    <input type="number" id="homeGoals" min="0" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label>Goles Visitante</label>
+                    <input type="number" id="awayGoals" min="0" placeholder="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Goleadores (separados por coma)</label>
+                <input type="text" id="scorers" placeholder="Ej: Mbappé (23', 45'), Messi (67')">
+            </div>
+            <div class="form-group">
+                <label>Asistencias</label>
+                <input type="text" id="assists" placeholder="Ej: Messi (2), Saka">
+            </div>
+            <div class="form-group">
+                <label>Tarjetas</label>
+                <input type="text" id="cards" placeholder="Ej: Rüdiger (35' amarilla)">
+            </div>
+            <button class="btn-admin" style="background: linear-gradient(135deg, #00ff88, #00cc6a);" onclick="addResult()">
+                <i class="fas fa-save"></i> Guardar Resultado
+            </button>
+        </div>
+
+        <!-- Nueva Noticia -->
+        <div class="admin-card">
+            <h4><i class="fas fa-newspaper" style="color: #4488ff;"></i> Nueva Noticia</h4>
+            <div class="form-group">
+                <label>Título</label>
+                <input type="text" id="newsTitle" placeholder="Título de la noticia">
+            </div>
+            <div class="form-group">
+                <label>Tipo</label>
+                <select id="newsType">
+                    <option value="Fichaje">Fichaje</option>
+                    <option value="Lesión">Lesión</option>
+                    <option value="Resultado">Resultado</option>
+                    <option value="Mercado">Mercado</option>
+                    <option value="Copa">Copa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Resumen</label>
+                <textarea id="newsExcerpt" rows="3" placeholder="Breve descripción..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Imagen (URL)</label>
+                <input type="text" id="newsImage" placeholder="https://...">
+            </div>
+            <button class="btn-admin" style="background: linear-gradient(135deg, #4488ff, #2d5aa0);" onclick="addNews()">
+                <i class="fas fa-paper-plane"></i> Publicar Noticia
+            </button>
+        </div>
+
+        <!-- Notificación Global -->
+        <div class="admin-card">
+            <h4><i class="fas fa-bullhorn" style="color: #ff6b6b;"></i> Enviar Notificación</h4>
+            <div class="form-group">
+                <label>Título</label>
+                <input type="text" id="notifTitle" placeholder="Título de la alerta">
+            </div>
+            <div class="form-group">
+                <label>Mensaje</label>
+                <input type="text" id="notifMsg" placeholder="Mensaje para todos los usuarios...">
+            </div>
+            <div class="form-group">
+                <label>Tipo</label>
+                <select id="notifType">
+                    <option value="info">Info</option>
+                    <option value="success">Éxito</option>
+                    <option value="warning">Advertencia</option>
+                    <option value="error">Error</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="notifPush"> Enviar push notification
+                </label>
+            </div>
+            <button class="btn-admin" style="background: linear-gradient(135deg, #ff6b6b, #ee5a5a);" onclick="broadcastNotification()">
+                <i class="fas fa-broadcast-tower"></i> Enviar a Todos
+            </button>
+        </div>
+
+        <!-- Editar Tabla -->
+        <div class="admin-card">
+            <h4><i class="fas fa-table" style="color: #ffd700;"></i> Actualizar Tabla</h4>
+            <div class="form-group">
+                <label>Equipo</label>
+                <select id="tableTeam">
+                    <option value="lanza">Lanza All</option>
+                    <option value="tde">La T De</option>
+                </select>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                <div class="form-group">
+                    <label>PJ</label>
+                    <input type="number" id="tablePJ" min="0">
+                </div>
+                <div class="form-group">
+                    <label>PG</label>
+                    <input type="number" id="tablePG" min="0">
+                </div>
+                <div class="form-group">
+                    <label>PE</label>
+                    <input type="number" id="tablePE" min="0">
+                </div>
+                <div class="form-group">
+                    <label>PP</label>
+                    <input type="number" id="tablePP" min="0">
+                </div>
+                <div class="form-group">
+                    <label>GF</label>
+                    <input type="number" id="tableGF" min="0">
+                </div>
+                <div class="form-group">
+                    <label>GC</label>
+                    <input type="number" id="tableGC" min="0">
+                </div>
+            </div>
+            <button class="btn-admin" style="background: linear-gradient(135deg, #ffd700, #ccac00); color: black;" onclick="updateTable()">
+                <i class="fas fa-sync-alt"></i> Actualizar Tabla
+            </button>
+        </div>
+
+        <!-- Gestión de Usuarios -->
+        <div class="admin-card">
+            <h4><i class="fas fa-users-cog" style="color: #9b59b6;"></i> Gestión Usuarios</h4>
+            <div class="form-group">
+                <label>Buscar usuario</label>
+                <input type="text" id="searchUser" placeholder="Nombre de usuario...">
+            </div>
+            <div style="max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 10px; margin-bottom: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>MessiFan10</span>
+                    <span style="color: #00ff88; font-size: 12px;">312 pts</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>Carlos23</span>
+                    <span style="color: #ffd700; font-size: 12px;">245 pts</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px;">
+                    <span>LigaMaster</span>
+                    <span style="color: #cd7f32; font-size: 12px;">198 pts</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-admin" style="flex: 1; background: rgba(255,255,255,0.1); font-size: 12px;">
+                    <i class="fas fa-ban"></i> Ban
+                </button>
+                <button class="btn-admin" style="flex: 1; background: rgba(255,255,255,0.1); font-size: 12px;">
+                    <i class="fas fa-crown"></i> Admin
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- INICIO -->
         <section id="inicio" class="tab-content active">
@@ -3129,6 +3478,94 @@
         document.getElementById('loginModal').addEventListener('click', (e) => {
             if (e.target === e.currentTarget) closeLogin();
         });
+    
+    <!-- JAVASCRIPT PARA FUNCIONES ADMIN -->
+<script>
+    // Mostrar/ocultar panel admin
+    function toggleAdmin() {
+        const panel = document.getElementById('adminPanel');
+        panel.classList.toggle('active');
+        if (panel.classList.contains('active')) {
+            panel.scrollIntoView({ behavior: 'smooth' });
+            showToast('Panel Admin', 'Modo administrador activado', 'success');
+        }
+    }
+
+    // Agregar partido
+    function addMatch() {
+        const date = document.getElementById('matchDate').value;
+        const competition = document.getElementById('matchCompetition').value;
+        const time = document.getElementById('matchTime').value;
+        
+        if (!date || !time) {
+            showToast('Error', 'Completa fecha y horario', 'error');
+            return;
+        }
+        
+        showToast('Éxito', `Partido de ${competition} agregado para el ${date} a las ${time}`, 'success');
+        
+        // Limpiar campos
+        document.getElementById('matchDate').value = '';
+        document.getElementById('matchTime').value = '';
+    }
+
+    // Agregar resultado
+    function addResult() {
+        const homeGoals = document.getElementById('homeGoals').value;
+        const awayGoals = document.getElementById('awayGoals').value;
+        
+        if (homeGoals === '' || awayGoals === '') {
+            showToast('Error', 'Ingresa ambos resultados', 'error');
+            return;
+        }
+        
+        showToast('Éxito', `Resultado guardado: ${homeGoals} - ${awayGoals}`, 'success');
+    }
+
+    // Agregar noticia
+    function addNews() {
+        const title = document.getElementById('newsTitle').value;
+        const type = document.getElementById('newsType').value;
+        
+        if (!title) {
+            showToast('Error', 'Ingresa un título', 'error');
+            return;
+        }
+        
+        showToast('Publicado', `Noticia de ${type}: "${title}"`, 'success');
+        document.getElementById('newsTitle').value = '';
+        document.getElementById('newsExcerpt').value = '';
+    }
+
+    // Enviar notificación
+    function broadcastNotification() {
+        const title = document.getElementById('notifTitle').value;
+        const msg = document.getElementById('notifMsg').value;
+        const type = document.getElementById('notifType').value;
+        
+        if (!title || !msg) {
+            showToast('Error', 'Completa título y mensaje', 'error');
+            return;
+        }
+        
+        showToast('Enviado', `Notificación "${title}" enviada a todos los usuarios`, type);
+        document.getElementById('notifTitle').value = '';
+        document.getElementById('notifMsg').value = '';
+    }
+
+    // Actualizar tabla
+    function updateTable() {
+        const team = document.getElementById('tableTeam').value;
+        const pj = document.getElementById('tablePJ').value;
+        const pg = document.getElementById('tablePG').value;
+        
+        if (!pj || !pg) {
+            showToast('Error', 'Completa los datos', 'error');
+            return;
+        }
+        
+        showToast('Actualizado', `Tabla de ${team === 'lanza' ? 'Lanza All' : 'La T De'} actualizada`, 'success');
+    }
     </script>
 </body>
 </html>
